@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+      <img src="assets/imagenes/icons/menu.png" alt="">
+    </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Tablas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Detalles</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <div class="dropdown">
+          <button class="btn dropdown-toggle mx-4" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/imagenes/icons/opciones.png" alt="">
+            <a class="text-dark px-1 text-decoration-none">Opciones</a>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">
+              <img src="assets/imagenes/icons/setting(1).png" alt="">
+            <label class="text-dark px-1">Configuración</label>
+            </a></li>
+            <li><a class="dropdown-item" href="#">
+            <img src="assets/imagenes/icons/usuario.png" alt="">
+            <label class="text-dark px-1">Perfil</label>
+            </a></li>
+            <hr>
+            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+      </span>
+    </div>
+  </div>
+</nav>
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header bg-primary">
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Hola, {{usuario}} </h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    
+  </div>
+</div>
