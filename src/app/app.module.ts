@@ -9,6 +9,8 @@ import { DashboardAdminComponent } from './componentes/vistas/dashboard-admin/da
 import { NavTabsComponent } from './componentes/navTabs/navTabs.component';
 import { CardComponent } from './componentes/card/card.component';
 import { GraficaComponent } from './componentes/grafica/grafica.component';
+import { Err404Component } from './componentes/err404/err404.component';
+import { CuerpoComponent } from './componentes/cuerpo/cuerpo.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { GraficaComponent } from './componentes/grafica/grafica.component';
     NavTabsComponent,
     DashboardAdminComponent,
     CardComponent,
-    GraficaComponent
+    GraficaComponent,
+    Err404Component,
+    CuerpoComponent
   ],
   imports: [
     BrowserModule,
