@@ -10,18 +10,18 @@ import { HomeComponent } from './vistasAdmin/home/home.component';
 
 
 
+
 @NgModule({
   declarations: [
     CuerpoComponent,
     CardComponent,
     GraficaComponent,
     AdminNavTabComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutesModule,
-
   ],
   exports:[
     CuerpoComponent,
