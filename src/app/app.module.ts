@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/vistas/login/login.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
-import { DashboardAdminComponent } from './componentes/vistas/adminUser/dashboard-admin/dashboard-admin.component';
+
 import { NavTabsComponent } from './componentes/navTabs/navTabs.component';
 import { Err404Component } from './componentes/vistas/err404/err404.component';
-import { DashboardUsuarioComponent } from './componentes/vistas/sistemaUser/dashboard-usuario/dashboard-usuario.component';
+
 import { DashboardClienteComponent } from './componentes/vistas/clienteUser/dashboard-cliente/dashboard-cliente.component';
 import { DashboardLabComponent } from './componentes/vistas/labUser/dashboard-lab/dashboard-lab.component';
 import { AdministradorModule } from './componentes/vistas/adminUser/administrador.module';
@@ -19,26 +19,31 @@ import { UsuarioSistemaModule } from './componentes/vistas/sistemaUser/usuario-s
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
     NavTabsComponent,
-    DashboardAdminComponent,
+ 
     Err404Component,
-    DashboardUsuarioComponent,
+  
     DashboardClienteComponent,
-    DashboardLabComponent
+    DashboardLabComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+
     AdministradorModule,
     ClienteModule,
     LaboratorioModule,
     LoginModule,
     UsuarioSistemaModule
+  ],
+  exports:[
+    NavbarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

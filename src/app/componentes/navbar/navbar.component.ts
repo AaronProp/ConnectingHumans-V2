@@ -10,7 +10,4 @@ export class NavbarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-
-  usuario: string = "Aaron";
-
 }

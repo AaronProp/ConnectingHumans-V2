@@ -1,17 +1,21 @@
-<div class="row m-1">
-    <div class="col col-3">
 
-        <div class="m-1">
-            <app-card></app-card>
-        </div>
-        <div class="m-1">
-            <app-card></app-card>
-        </div>
-        <div class="m-1">
-            <app-card></app-card>
-        </div>
+<router-outlet></router-outlet>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+  <div class="offcanvas-header bg-primary">
+    <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Hola, Administrador</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="row">
+      Vistas
+      <hr>
+      <div class="col col-1">
+        <button class="btn btn-primary my-1" routerLink="vistaUsuarios">Usuarios</button>
+        <button class="btn btn-danger my-1" routerLink="vistaClientes">Clientes</button>
+        <button class="btn btn-warning my-1" routerLink="vistaCandidatos">Candidatos</button>
+        <button class="btn btn-info my-1" routerLink="vistaLaboratorios">Laboratorios</button>
+      </div>
     </div>
-    <div class="col col-9">
-        <app-grafica></app-grafica>
-    </div>
+  </div>
 </div>
