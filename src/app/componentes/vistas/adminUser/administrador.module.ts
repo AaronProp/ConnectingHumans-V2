@@ -17,15 +17,12 @@ import { HomeComponent } from './vistasAdmin/home/home.component';
     CardComponent,
     GraficaComponent,
     AdminNavTabComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutesModule,
+    AdminRoutesModule
   ],
-  exports:[
-    CuerpoComponent,
-    AdminNavTabComponent
-  ]
+  exports:[]
 })
 export class AdministradorModule { }

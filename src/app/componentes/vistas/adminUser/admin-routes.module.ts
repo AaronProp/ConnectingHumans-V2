@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+
 import { VistaUsuariosComponent } from './vistasAdmin/vista-usuarios/vista-usuarios.component';
 import { VistaCandidatosComponent } from './vistasAdmin/vista-candidatos/vista-candidatos.component';
 import { VistaClientesComponent } from './vistasAdmin/vista-clientes/vista-clientes.component';

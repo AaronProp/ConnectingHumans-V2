@@ -4,11 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componentes/vistas/login/login.component';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
-
-import { NavTabsComponent } from './componentes/navTabs/navTabs.component';
 import { Err404Component } from './componentes/vistas/err404/err404.component';
-
 import { DashboardClienteComponent } from './componentes/vistas/clienteUser/dashboard-cliente/dashboard-cliente.component';
 import { DashboardLabComponent } from './componentes/vistas/labUser/dashboard-lab/dashboard-lab.component';
 import { AdministradorModule } from './componentes/vistas/adminUser/administrador.module';
@@ -16,6 +12,7 @@ import { ClienteModule } from './componentes/vistas/clienteUser/cliente.module';
 import { LaboratorioModule } from './componentes/vistas/labUser/laboratorio.module';
 import { LoginModule } from './componentes/vistas/login/login.module';
 import { UsuarioSistemaModule } from './componentes/vistas/sistemaUser/usuario-sistema.module';
+import { PublicModule } from './public/public.module';
 
 
 
@@ -24,27 +21,21 @@ import { UsuarioSistemaModule } from './componentes/vistas/sistemaUser/usuario-s
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent,
-    NavTabsComponent,
- 
     Err404Component,
-  
     DashboardClienteComponent,
     DashboardLabComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    LoginModule,
     AdministradorModule,
     ClienteModule,
     LaboratorioModule,
-    LoginModule,
-    UsuarioSistemaModule
+    UsuarioSistemaModule,
+    PublicModule
   ],
-  exports:[
-    NavbarComponent
-  ],
+  exports:[],
   providers: [],
   bootstrap: [AppComponent]
 })
