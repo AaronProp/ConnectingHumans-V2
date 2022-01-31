@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Err404Component } from './componentes/vistas/err404/err404.component';
 import { LoginComponent } from './componentes/vistas/login/login.component';
-import { DashboardUsuarioComponent } from './componentes/vistas/sistemaUser/vistasUser/dashboard-usuario/dashboard-usuario.component';
-import { DashboardClienteComponent } from './componentes/vistas/clienteUser/dashboard-cliente/dashboard-cliente.component';
-import { DashboardLabComponent } from './componentes/vistas/labUser/dashboard-lab/dashboard-lab.component';
+
+
 
 
 const routes: Routes = [
@@ -20,8 +19,10 @@ const routes: Routes = [
   path: 'usuario',
   loadChildren: () => import('./componentes/vistas/sistemaUser/usuario-sistema.module').then(m => m.UsuarioSistemaModule)
   },
-  {path: 'dashboard-cliente', component: DashboardClienteComponent},
-  {path: 'dashboard-lab', component: DashboardLabComponent},
+  {path: 'cliente',
+  loadChildren: () => import('./componentes/vistas/clienteUser/cliente.module').then(m => m.ClienteModule)
+},
+  
   {path: '**',component: Err404Component, pathMatch: 'full'}
 ];
 

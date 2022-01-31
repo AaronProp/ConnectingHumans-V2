@@ -4,8 +4,14 @@ import { CuerpoComponent } from './cuerpo/cuerpo.component';
 import { CardComponent } from './card/card.component';
 import { GraficaComponent } from './grafica/grafica.component';
 import { AdminRoutesModule } from './admin-routes.module';
-import { AdminNavTabComponent } from './admin-nav-tab/admin-nav-tab.component';
 import { HomeComponent } from './vistasAdmin/home/home.component';
+import { PublicModule } from 'src/app/public/public.module';
+import { DashboardAdminComponent } from './vistasAdmin/dashboard-admin/dashboard-admin.component';
+import { VistaCandidatosComponent } from './vistasAdmin/vista-candidatos/vista-candidatos.component';
+import { VistaClientesComponent } from './vistasAdmin/vista-clientes/vista-clientes.component';
+import { VistaLaboratoriosComponent } from './vistasAdmin/vista-laboratorios/vista-laboratorios.component';
+import { VistaUsuariosComponent } from './vistasAdmin/vista-usuarios/vista-usuarios.component';
+
 
 
 
@@ -16,12 +22,17 @@ import { HomeComponent } from './vistasAdmin/home/home.component';
     CuerpoComponent,
     CardComponent,
     GraficaComponent,
-    AdminNavTabComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardAdminComponent,
+    VistaCandidatosComponent,
+    VistaClientesComponent,
+    VistaLaboratoriosComponent,
+    VistaUsuariosComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutesModule
+    AdminRoutesModule,
+    PublicModule
   ],
   exports:[]
 })

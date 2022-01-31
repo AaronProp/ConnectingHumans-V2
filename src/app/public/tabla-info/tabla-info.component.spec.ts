@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardLabComponent } from './dashboard-lab.component';
+import { TablaInfoComponent } from './tabla-info.component';
 
-describe('DashboardLabComponent', () => {
-  let component: DashboardLabComponent;
-  let fixture: ComponentFixture<DashboardLabComponent>;
+describe('TablaInfoComponent', () => {
+  let component: TablaInfoComponent;
+  let fixture: ComponentFixture<TablaInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DashboardLabComponent ]
+      declarations: [ TablaInfoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardLabComponent);
+    fixture = TestBed.createComponent(TablaInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
