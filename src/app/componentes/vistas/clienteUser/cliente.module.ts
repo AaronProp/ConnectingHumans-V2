@@ -5,6 +5,7 @@ import { CandidatosComponent } from './vistasCliente/candidatos/candidatos.compo
 import { ClienteRoutesModule } from './cliente-routes.module';
 import { CuerpoComponent } from './cuerpo/cuerpo.component';
 import { PublicModule } from '../../../public/public.module';
+import { DashboardComponent } from './vistasCliente/dashboard/dashboard.component';
 
 
 
@@ -12,7 +13,8 @@ import { PublicModule } from '../../../public/public.module';
   declarations: [
     HomeComponent,
     CandidatosComponent,
-    CuerpoComponent
+    CuerpoComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

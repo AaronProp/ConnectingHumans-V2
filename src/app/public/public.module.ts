@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NavTabComponent } from './nav-tab/nav-tab.component';
 import { TablaInfoComponent } from './tabla-info/tabla-info.component';
+import { InfoCardComponent } from './info-card/info-card.component';
 
 
 
@@ -11,7 +12,8 @@ import { TablaInfoComponent } from './tabla-info/tabla-info.component';
   declarations: [
     NavBarComponent,
     NavTabComponent,
-    TablaInfoComponent
+    TablaInfoComponent,
+    InfoCardComponent
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import { TablaInfoComponent } from './tabla-info/tabla-info.component';
   exports:[
     NavBarComponent,
     NavTabComponent,
-    TablaInfoComponent
+    TablaInfoComponent,
+    InfoCardComponent
   ]
 })
 export class PublicModule { }

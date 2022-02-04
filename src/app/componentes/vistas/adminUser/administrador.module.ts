@@ -6,11 +6,12 @@ import { GraficaComponent } from './grafica/grafica.component';
 import { AdminRoutesModule } from './admin-routes.module';
 import { HomeComponent } from './vistasAdmin/home/home.component';
 import { PublicModule } from 'src/app/public/public.module';
-import { DashboardAdminComponent } from './vistasAdmin/dashboard-admin/dashboard-admin.component';
-import { VistaCandidatosComponent } from './vistasAdmin/vista-candidatos/vista-candidatos.component';
-import { VistaClientesComponent } from './vistasAdmin/vista-clientes/vista-clientes.component';
-import { VistaLaboratoriosComponent } from './vistasAdmin/vista-laboratorios/vista-laboratorios.component';
-import { VistaUsuariosComponent } from './vistasAdmin/vista-usuarios/vista-usuarios.component';
+
+import { CandidatosComponent } from './vistasAdmin/candidatos/candidatos.component';
+import { ClientesComponent } from './vistasAdmin/clientes/clientes.component';
+import { LaboratoriosComponent } from './vistasAdmin/laboratorios/laboratorios.component';
+import { UsuariosComponent } from './vistasAdmin/usuarios/usuarios.component';
+import { DashboardComponent } from './vistasAdmin/dashboard/dashboard.component';
 
 
 
@@ -23,11 +24,11 @@ import { VistaUsuariosComponent } from './vistasAdmin/vista-usuarios/vista-usuar
     CardComponent,
     GraficaComponent,
     HomeComponent,
-    DashboardAdminComponent,
-    VistaCandidatosComponent,
-    VistaClientesComponent,
-    VistaLaboratoriosComponent,
-    VistaUsuariosComponent
+    DashboardComponent,
+    CandidatosComponent,
+    ClientesComponent,
+    LaboratoriosComponent,
+    UsuariosComponent
   ],
   imports: [
     CommonModule,

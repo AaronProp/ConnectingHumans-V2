@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './vistasCliente/home/home.component';
-import { DashboardClienteComponent } from './vistasCliente/dashboard-cliente/dashboard-cliente.component';
+import { DashboardComponent } from './vistasCliente/dashboard/dashboard.component';
 import { CandidatosComponent } from './vistasCliente/candidatos/candidatos.component';
 
 const routes:Routes = [{
@@ -11,7 +11,7 @@ const routes:Routes = [{
   children:[
    {
      path:'dashboard',
-     component:DashboardClienteComponent
+     component:DashboardComponent
    },
    {
      path:'candidatos',

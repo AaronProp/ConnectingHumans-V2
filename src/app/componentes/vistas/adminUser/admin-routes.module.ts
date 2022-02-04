@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
-import { VistaUsuariosComponent } from './vistasAdmin/vista-usuarios/vista-usuarios.component';
-import { VistaCandidatosComponent } from './vistasAdmin/vista-candidatos/vista-candidatos.component';
-import { VistaClientesComponent } from './vistasAdmin/vista-clientes/vista-clientes.component';
-import { VistaLaboratoriosComponent } from './vistasAdmin/vista-laboratorios/vista-laboratorios.component';
-import { DashboardAdminComponent } from './vistasAdmin/dashboard-admin/dashboard-admin.component';
+import { UsuariosComponent } from './vistasAdmin/usuarios/usuarios.component';
+import { CandidatosComponent } from './vistasAdmin/candidatos/candidatos.component';
+import { ClientesComponent } from './vistasAdmin/clientes/clientes.component';
+import { LaboratoriosComponent } from './vistasAdmin/laboratorios/laboratorios.component';
+import { DashboardComponent } from './vistasAdmin/dashboard/dashboard.component';
 import { HomeComponent } from './vistasAdmin/home/home.component';
 
 const routes:Routes = [
@@ -16,23 +16,23 @@ const routes:Routes = [
     children:[
       {
         path:'dashboard',
-        component: DashboardAdminComponent
+        component: DashboardComponent
       },
       {
-        path:'vistaUsuarios',
-        component: VistaUsuariosComponent
+        path:'usuarios',
+        component: UsuariosComponent
       },
       {
-        path:'vistaCandidatos',
-        component: VistaCandidatosComponent
+        path:'candidatos',
+        component: CandidatosComponent
       },
       {
-        path:'vistaClientes',
-        component: VistaClientesComponent
+        path:'clientes',
+        component: ClientesComponent
       },
       {
-        path:'vistaLaboratorios',
-        component: VistaLaboratoriosComponent
+        path:'laboratorios',
+        component: LaboratoriosComponent
       },
       {
         path:'**',
