@@ -9,6 +9,8 @@ import { AdministradorModule } from './componentes/vistas/adminUser/administrado
 import { ClienteModule } from './componentes/vistas/clienteUser/cliente.module';
 import { UsuarioSistemaModule } from './componentes/vistas/sistemaUser/usuario-sistema.module';
 import { PublicModule } from './public/public.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -28,7 +30,9 @@ import { PublicModule } from './public/public.module';
     AdministradorModule,
     ClienteModule,
     UsuarioSistemaModule,
-    PublicModule
+    PublicModule,
+    FormsModule,
+    HttpClientModule
   ],
   exports:[],
   providers: [],

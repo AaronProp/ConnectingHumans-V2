@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('loginForm') loginForm!: NgForm;
+
+  url: string = 'localhost:8080/sesiones/_R';
+  resp:any=[];
+  error=[];
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
+  usuarioValido():boolean{
+    return this.loginForm?.controls["usuario"]?.touched && this.loginForm.controls["usuario"]?.invalid;
+  }
+
+  passValido():boolean{
+    return this.loginForm?.controls["pass"]?.touched && this.loginForm.controls["pass"]?.invalid;
+  }
+
+  validForm(){
+    return this.loginForm?.valid
+  }
+
+  guardar(){
+    this.http.get("localhost:8080/sesiones/_R").subscribe(data => {
+      this.resp = data
+      console.log(data);
+    });
+    console.log(this.resp);
+  }
 }
