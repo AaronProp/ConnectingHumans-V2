@@ -1,23 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { CentralDatosService } from 'src/app/central-datos.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
 
+export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  url: string = 'localhost:8080/sesiones/_R';
-  resp:any=[];
-  error=[];
-
-  constructor(private http: HttpClient) { }
+  constructor( private servicio: CentralDatosService) { }
 
   ngOnInit() {
+/* 
+    this.servicio.getPaquetes()
+    .subscribe(resp => console.log(resp))
+
+    this.servicio.getSesiones()
+    .subscribe(resp => console.log(resp))
+*/
   }
 
   usuarioValido():boolean{
@@ -33,10 +36,17 @@ export class LoginComponent implements OnInit {
   }
 
   guardar(){
-    this.http.get("localhost:8080/sesiones/_R").subscribe(data => {
-      this.resp = data
-      console.log(data);
-    });
-    console.log(this.resp);
+    let inputUsr = this.loginForm?.controls["usuario"]?.value;
+    let inputPass = this.loginForm?.controls["pass"]?.value;
+
+    this.servicio.iniciarSesion(inputUsr,inputPass)
+    .subscribe(resp => {
+      console.log(resp)
+    })
   }
+}
+
+interface auth{
+  usuario:string,
+  token:string
 }
