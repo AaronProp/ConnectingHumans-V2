@@ -12,4 +12,6 @@ export class NavTabComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  activo = "active"
+
 }
