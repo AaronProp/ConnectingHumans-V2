@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor( private servicio: CentralDatosService, private router:Router) { }
   _usuario!: AuthResp;
-  _sesiones!:Sesion[];
+  //_sesiones!:Sesion[];
   _sesionAct!:Sesion;
 
   ngOnInit() {
@@ -45,24 +45,29 @@ export class LoginComponent implements OnInit {
     let inputUsr = this.loginForm?.controls["usuario"]?.value;
     let inputPass = this.loginForm?.controls["pass"]?.value;
 
-    this.servicio.getSesiones()
-    .subscribe(resp => {
-      this._sesiones = resp
-    })
+    // this.servicio.getSesiones()
+    // .subscribe(resp => {
+    //   this._sesiones = resp
+    //   console.log(resp)
+    // })
 
     this.servicio.iniciarSesion(inputUsr,inputPass)
     .subscribe(resp => {
       if(resp.token == undefined){
+        //Es necesario que lancemos un mensaje cuando la sesion no se haya podido iniciar
+        //IDEA
+        //Crear un alert dentro de un ngIf, con una bandera abajo hacemos que nunca se muestre,
+        //luego si da error al iniciar sesion, entonces levantas la bandera logrando que se muestre el mensaje de error
+        //despues con un setTimeOut de 5s vuelves a bajar la bandera y se ocultara
         console.log(resp.msg)
       }else{
-        console.log("Ok")
         this._usuario = {
           usuario: resp.usuario!,
           token: resp.token! 
         }
-        localStorage.setItem(`${resp.usuario}`, `${resp.token}`);
+        localStorage.setItem('token', `${resp.token}`);
+        localStorage.setItem('user_name',`${resp.usuario}`);
         this.router.navigateByUrl('/admin')
-        console.log(this._usuario)
       }
     })
   }
