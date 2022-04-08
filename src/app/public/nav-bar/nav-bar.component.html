@@ -9,77 +9,53 @@
       <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
       <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav me-auto mb-2 mb-lg-0">
-          <div class="text-center">*TIPO DE USUARIO*</div>
+          <div class="text-center">El tipo de usuario se calculara en el backend</div>
         </div>
-        <span class="navbar-text">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle mx-4" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="assets/imagenes/icons/opciones.png" alt="">
-              <a class="text-dark px-1 text-decoration-none">Opciones</a>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item">
-                <img src="assets/imagenes/icons/setting(1).png" alt="">
-              <label class="text-dark px-1">Configuración</label>
-              </a></li>
-              <li><a class="dropdown-item">
-              <img src="assets/imagenes/icons/usuario.png" alt="">
-              <label class="text-dark px-1">Perfil</label>
-              </a></li>
-              <hr>
-              <li><a class="dropdown-item" (click)="cerrarSesion()">Cerrar Sesión</a></li>
-            </ul>
-          </div>
-        </span>
       </div>
     </div>
   </nav>
   
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
-    <div class="offcanvas-header bg-primary">
-      <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Hola</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="row mt-2 ms-0 p-2 bg-conhu rounded-end">
+        <div class="col-10 text-center">
+          <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
+        </div>
+        <div class="col-2 mt-2">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
     </div>
-    <div class="container offcanvas-body">
-      <div class="row">
-        Vistas
-      </div>
-        <hr>
-
-        <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
+    <div class="row mt-2 ms-0">
+        <div class="accordion ps-0" id="accordionPanelsStayOpenExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                Secciones
-              </button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acordion_menu_huella" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                  <i class="fas fa-fingerprint me-3"></i>Huella
+                </button>
             </h2>
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse hide" aria-labelledby="panelsStayOpen-headingOne">
-              <div class="accordion-body">
-                <div class="container">
-                  <div class="row">
-                    <div class="col col-12">
-                      <button class="btn btn-primary my-1  w-100" routerLink="vistaUsuarios">Usuarios</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col col-12">
-                      <button class="btn btn-danger my-1 w-100" routerLink="vistaClientes">Clientes</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col col-12">
-                      <button class="btn btn-warning my-1 w-100" routerLink="vistaCandidatos">Candidatos</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col col-12">
-                      <button class="btn btn-info my-1 w-100" routerLink="vistaLaboratorios">Laboratorios</button>
-                    </div>
-                  </div>
+            <div id="acordion_menu_huella" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body p-0">
+                  <ul class="list-unstyled m-0">
+                    <li><a class="dropdown-item pt-2 pb-2 text-conhu" type="button" href='#'>Historico Solicitudes de Rotación</a></li>
+                    <li><a class="dropdown-item pt-2 pb-2 text-conhu" type="button" href='#'>Usuarios Autorizados Por Huella</a></li>
+                    <li><a class="dropdown-item pt-2 pb-2 text-conhu" type="button" href='#'>HistoricoUsuarios Autorizados Por Huella</a></li>
+                    <li><a class="dropdown-item pt-2 pb-2 text-conhu" type="button" href='#'>Huella predeterminada</a></li>                  
+                  </ul>
                 </div>
-              </div>
             </div>
           </div>
         </div>
     </div>
-  </div>
+    <div class="row ms-0 mb-2 pt-2 pb-2 mt-auto bg-conhu rounded-end">
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-user me-3"></i><strong> {{user_name}} </strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow text-conhu" aria-labelledby="dropdownUser2">
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-3"></i>Configuracion</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-address-card me-3"></i>Perfil</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" (click)="cerrarSesion()"><i class="fas fa-sign-out-alt me-2"></i>Cerrar sesion</a></li>
+        </ul>
+      </div>
+    </div>
+</div>

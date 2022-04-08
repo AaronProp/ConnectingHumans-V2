@@ -8,13 +8,23 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  //Atributos de Clase
+  user_name:string;
+
+  constructor(private router:Router) {
+    //Obteneniendo el nombre del usuario
+    this.user_name = String(localStorage.getItem('user_name'))
+   }
 
   ngOnInit(): void {
+
   }
 
   cerrarSesion(){
-    localStorage.removeItem('Leo');
+    //Eliminando variables de sesion que no estan en el local sesion
+    localStorage.removeItem('user_name');
+    localStorage.removeItem('token');
+    //Redireccionando
     this.router.navigateByUrl('/')
   }
 
