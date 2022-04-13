@@ -9,6 +9,8 @@ export class CentralDatosService {
 
   constructor(private http: HttpClient) { }
   urlBase: string = 'http://localhost:8080/';
+
+  sesionActual!:Sesion;
   
 
   getPaquetes(){

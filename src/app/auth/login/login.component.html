@@ -5,21 +5,25 @@
         <img src="assets/imagenes/logo.png" alt="Logo empresa" style="height: 20vh">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form  (ngSubmit)="guardar()" #loginForm="ngForm" autocomplete="off">
+        <form  (ngSubmit)="iniciarSesion()" #loginForm="ngForm" autocomplete="off">
           <!-- Email input -->
           <div class="form-outline mb-4">
             <input type="text" class="form-control form-control-lg"
               placeholder="Ingresa un correo valido" ngModel name="usuario" required/>
             <label class="form-label">Correo Electronico / Usuario</label>
           </div>
-
+          
           <!-- Password input -->
           <div class="form-outline mb-3">
             <input type="password" class="form-control form-control-lg"
               placeholder="Ingresa tu contraseña" ngModel name="pass" required/>
             <label class="form-label">Contraseña</label>
             <div class="row">
-              <small class="form-text text-danger text-center" *ngIf="usuarioValido()">Credenciales incorrectas</small>
+              <small class="form-text text-danger text-center" *ngIf="errInicioSesion">
+                <div class="alert alert-danger" role="alert">
+                  Error en inicio de sesion
+                </div>
+              </small>
             </div>
           </div>
 
