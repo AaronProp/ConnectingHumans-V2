@@ -9,7 +9,7 @@
       <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
       <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav me-auto mb-2 mb-lg-0">
-          <div class="text-center">{{usuarioActual}}</div>
+          <div class="text-center">{{usuarioActual.nombre}}</div>
         </div>
       </div>
     </div>
@@ -51,11 +51,31 @@
           <i class="fa-solid fa-user me-3"></i><strong> {{user_name}} </strong>
         </a>
         <ul class="dropdown-menu text-small shadow text-conhu" aria-labelledby="dropdownUser2">
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear me-3"></i>Configuracion</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-solid fa-address-card me-3"></i>Perfil</a></li>
+          <li><a class="dropdown-item"><i class="fa-solid fa-gear me-3"></i>Configuracion</a></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#usuarioModal"><i class="fa-solid fa-address-card me-3"></i>Perfil</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" (click)="cerrarSesion()"><i class="fas fa-sign-out-alt me-2"></i>Cerrar sesion</a></li>
         </ul>
       </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-info">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles de usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <b>Usuario:</b><span>{{usuarioActual.usuario}}</span><br>
+        <b>Tipo de Acceso:</b><span>{{usuarioActual.nombre}}</span><br>
+        <b>Descripcion:</b><span>{{usuarioActual.descripcion}}</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

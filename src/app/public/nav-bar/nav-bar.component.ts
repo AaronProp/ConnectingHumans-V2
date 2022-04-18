@@ -20,7 +20,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  usuarioActual = this.servicio.sesionActual.nombre;
+  usuarioActual = this.servicio.sesionActual;
 
   cerrarSesion(){
     //Eliminando variables de sesion que no estan en el local sesion
