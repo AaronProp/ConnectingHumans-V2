@@ -9,9 +9,19 @@ export class CentralDatosService {
 
   constructor(private http: HttpClient) { }
   urlBase: string = 'http://localhost:8080/';
-
   sesionActual!:Sesion;
   
+  getCandidatos(){
+    return this.http.get(`${this.urlBase}candidato/As_R`)
+  }
+
+  getClientes(){
+    return this.http.get(`${this.urlBase}cliente/As_R`)
+  }
+
+  getLaboratorios(){
+    return this.http.get(`${this.urlBase}laboratorio/As_R`)
+  }
 
   getPaquetes(){
     return this.http.get(`${this.urlBase}paquete/_R`)
@@ -24,5 +34,12 @@ export class CentralDatosService {
   iniciarSesion(user:string,password:string){
     return this.http.post<AuthResp>(`${this.urlBase}autenticacion/login`,{"Usuario": `${user}`,"Password": `${password}`})
   }
+
+  //Control de navtab
+  activoPrincipal = 'active'
+  activoActivos = 'inactive'
+  activoInactivos = 'inactive'
+  activoListado = 'inactive'
+
 }
 

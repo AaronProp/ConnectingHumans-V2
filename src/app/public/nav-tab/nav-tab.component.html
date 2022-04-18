@@ -1,16 +1,16 @@
 <div class="mt-2">
     <ul class="nav nav-tabs justify-content-center">
       <li class="nav-item">
-        <a class="nav-link" aria-current="page" [ngClass]="activo">Principal</a>
+        <a class="nav-link" aria-current="page" [ngClass]="activoPrincipal" (click)="irPrincipal()">Principal</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">Activos</a>
+        <a class="nav-link" [ngClass]="activoActivos" (click)="irActivos()">Activos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">Inactivos</a>
+        <a class="nav-link" [ngClass]="activoInactivos" (click)="irInactivos()">Inactivos</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link">Listado completo</a>
+        <a class="nav-link" [ngClass]="activoListado" (click)="irListado()">Listado completo</a>
       </li>
     </ul>
   </div>

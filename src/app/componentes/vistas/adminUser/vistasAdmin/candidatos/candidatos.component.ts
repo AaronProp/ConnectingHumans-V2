@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CentralDatosService } from 'src/app/central-datos.service';
 
 @Component({
   selector: 'app-candidatos',
@@ -6,10 +7,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./candidatos.component.css']
 })
 export class CandidatosComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor( private servicio:CentralDatosService) {}
+  ngOnInit(): void {}
 }
