@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { NavTabComponent } from './nav-tab/nav-tab.component';
 import { TablaInfoComponent } from './tabla-info/tabla-info.component';
 import { InfoCardComponent } from './info-card/info-card.component';
+import { FiltrosTablaComponent } from './filtros-tabla/filtros-tabla.component';
 
 
 
@@ -11,18 +11,18 @@ import { InfoCardComponent } from './info-card/info-card.component';
 @NgModule({
   declarations: [
     NavBarComponent,
-    NavTabComponent,
     TablaInfoComponent,
-    InfoCardComponent
+    InfoCardComponent,
+    FiltrosTablaComponent
   ],
   imports: [
     CommonModule
   ],
   exports:[
     NavBarComponent,
-    NavTabComponent,
     TablaInfoComponent,
-    InfoCardComponent
+    InfoCardComponent,
+    FiltrosTablaComponent
   ]
 })
 export class PublicModule { }

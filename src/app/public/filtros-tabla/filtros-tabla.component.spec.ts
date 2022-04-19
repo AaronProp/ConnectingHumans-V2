@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavTabComponent } from './nav-tab.component';
+import { FiltrosTablaComponent } from './filtros-tabla.component';
 
-describe('NavTabComponent', () => {
-  let component: NavTabComponent;
-  let fixture: ComponentFixture<NavTabComponent>;
+describe('FiltrosTablaComponent', () => {
+  let component: FiltrosTablaComponent;
+  let fixture: ComponentFixture<FiltrosTablaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavTabComponent ]
+      declarations: [ FiltrosTablaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavTabComponent);
+    fixture = TestBed.createComponent(FiltrosTablaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
