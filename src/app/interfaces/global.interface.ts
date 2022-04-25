@@ -1,5 +1,12 @@
 export interface AuthResp {
+    id?:string;
     usuario?:string;
+    sesion?:string;
+    idCliente?:string|null;
+    idCandidato?:string|null;
+    idLaboratorio?:string|null;
+    idUsuarioSistema?:string|null;
+    permiso?:string;
     token?:string;
     estatus?:string;
     msg?:string;

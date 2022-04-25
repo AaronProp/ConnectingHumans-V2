@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AuthResp,Sesion } from '../app/interfaces/global.interface'
+import { AuthResp,Sesion,Candidato } from '../app/interfaces/global.interface'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class CentralDatosService {
   sesionActual!:Sesion;
   
   getCandidatos(){
-    return this.http.get(`${this.urlBase}candidato/As_R`)
+    return this.http.get<Candidato[]>(`${this.urlBase}candidato/As_R`)
   }
 
   getClientes(){
@@ -34,12 +34,5 @@ export class CentralDatosService {
   iniciarSesion(user:string,password:string){
     return this.http.post<AuthResp>(`${this.urlBase}autenticacion/login`,{"Usuario": `${user}`,"Password": `${password}`})
   }
-
-  //Control de navtab
-  activoPrincipal = 'active'
-  activoActivos = 'inactive'
-  activoInactivos = 'inactive'
-  activoListado = 'inactive'
-
 }
 

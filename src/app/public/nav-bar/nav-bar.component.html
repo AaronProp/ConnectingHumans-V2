@@ -9,7 +9,7 @@
       <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
       <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav me-auto mb-2 mb-lg-0">
-          <div class="text-center">{{usuarioActual.nombre}}</div>
+          <div class="text-center">Tipo de acceso: {{permiso}}</div>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
     <div class="row mt-2 ms-0 p-2 bg-conhu rounded-end">
         <div class="col-10 text-center">
-          <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
+          <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="" (click)="irInicio()">
         </div>
         <div class="col-2 mt-2">
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -29,7 +29,7 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acordion_menu_huella" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                  <i class="fas fa-fingerprint me-3"></i>Modulos
+                  <i class="fa-solid fa-address-card me-3"></i>Modulos de informacion
                 </button>
             </h2>
             <div id="acordion_menu_huella" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
@@ -69,9 +69,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <b>Usuario:</b><span>{{usuarioActual.usuario}}</span><br>
-        <b>Tipo de Acceso:</b><span>{{usuarioActual.nombre}}</span><br>
-        <b>Descripcion:</b><span>{{usuarioActual.descripcion}}</span>
+        <b>Usuario:</b><span>Usuario</span><br>
+        <b>Tipo de Acceso:</b><span>Tipo acceso</span><br>
+        <b>Descripcion:</b><span>Descripcion</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

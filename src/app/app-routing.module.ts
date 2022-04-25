@@ -12,9 +12,9 @@ const routes: Routes = [
   component: LoginComponent
   },
   {
-  path: 'admin',
-  loadChildren: () => import('./componentes/vistas/adminUser/administrador.module').then(m => m.AdministradorModule)
-  },
+    path: 'candidato',
+    loadChildren: () => import('./componentes/vistas/candidatoUser/candidato.module').then(m => m.CandidatoModule)
+    },
   {
   path: 'usuario',
   loadChildren: () => import('./componentes/vistas/sistemaUser/usuario-sistema.module').then(m => m.UsuarioSistemaModule)

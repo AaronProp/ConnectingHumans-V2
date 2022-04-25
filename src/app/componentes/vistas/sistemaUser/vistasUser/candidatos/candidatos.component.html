@@ -1,2 +1,206 @@
-<p>candidatos works!</p>
-<app-tabla-info></app-tabla-info>
+<div class="container" style="height: 90vh;">
+    <div class="row">
+        <div class="col"><h1 class="text-center">Candidatos asociados</h1></div>
+    </div>
+    <div class="row d-flex justify-content-end">
+        <div class="btn btn-primary w-25" data-bs-toggle="modal" data-bs-target="#addCandidatoModal">+ Nuevo Candidato</div>
+    </div>
+    <div class="row" >
+        <div class="col col-3">
+            <app-filtros-tabla></app-filtros-tabla>
+        </div>
+        <div class="col col-9">
+            <app-tabla-info></app-tabla-info>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Agregar Candidato-->
+<div class="modal fade" id="addCandidatoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo Candidato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <form action="">
+           <h4>Informacion personal</h4>
+           <hr>
+           <div class="row">
+            <div class="col">
+              <label for="nombre" class="form-label">Nombre(s)</label>
+              <input type="text" class="form-control" id="nombre" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="apellido1" class="form-label">Apellido materno</label>
+              <input type="text" class="form-control" id="apellido1" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="apellido2" class="form-label">Apellido paterno</label>
+              <input type="text" class="form-control" id="apllido2" aria-describedby="">
+            </div>
+           </div>
+
+           <div class="row">
+             <div class="col">
+              <label for="genero" class="form-label">Genero</label>
+              <select class="form-control" name="" id="genero">
+                <option value="M">M</option>
+                <option value="H">H</option>
+              </select>
+             </div>
+             <div class="col">
+              <label for="eCivil" class="form-label">Estado civil</label>
+              <select class="form-control" name="" id="eCivil">
+                <option value="Soltero">Soltero/a</option>
+                <option value="Casado">Casado/a</option>
+                <option value="Divorciado">DIvorciado/a</option>
+                <option value="Viudo">Viudo/a</option>
+              </select>
+             </div>
+           </div>
+
+           <div class="row">
+            <div class="col">
+              <label for="estudios" class="form-label">Maximo grado de estudios</label>
+              <select class="form-control" name="" id="estudios">
+                <option value="Primaria">Primaria</option>
+                <option value="Secundaria">Secundaria</option>
+                <option value="Preparatoria">Preparatoria</option>
+                <option value="Universidad">Universidad</option>
+                <option value="Posgrado">Posgrado</option>
+              </select>
+            </div>
+           </div>
+
+           <h4 class="mt-3">Informacion de natalidad</h4>
+           <hr>
+           <div class="row">
+             <div class="col">
+              <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
+              <input type="date" class="form-control" id="fechaNac" aria-describedby="">
+             </div>
+             <div class="col">
+              <label for="ciudadNat" class="form-label">Cuidad natal</label>
+              <input type="text" class="form-control" id="ciudadNat" aria-describedby="">
+             </div>
+           </div>
+
+           <h4 class="mt-3">Informacion de contacto</h4>
+           <hr>
+           <div class="row">
+             <div class="col">
+              <label for="telefono1" class="form-label">Telefono principal</label>
+              <input type="tel" class="form-control" id="telefono1" aria-describedby="">
+             </div>
+             <div class="col">
+              <label for="telefono2" class="form-label">Telefono secundario</label>
+              <input type="tel" class="form-control" id="telefono2" aria-describedby="">
+             </div>
+           </div>
+           <div class="row">
+            <div class="col">
+             <label for="correo" class="form-label">Correo electronico</label>
+             <input type="mail" class="form-control" id="correo" aria-describedby="">
+            </div>
+          </div>
+          
+          <h4 class="mt-3">Informacion de Domicilio</h4>
+           <hr>
+          <div class="row">
+            <div class="col">
+              <label for="calle" class="form-label">Calle</label>
+              <input type="text" class="form-control" id="calle" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="calle1" class="form-label">Cruce 1</label>
+              <input type="text" class="form-control" id="calle1" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="calle2" class="form-label">Cruce 2</label>
+              <input type="text" class="form-control" id="calle2" aria-describedby="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="numInt" class="form-label">Num. Int.</label>
+              <input type="number" class="form-control" id="numInt" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="numExt" class="form-label">Num. Ext.</label>
+              <input type="text" class="form-control" id="numExt" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="cp" class="form-label">Codigo postal</label>
+              <input type="number" class="form-control" id="cp" aria-describedby="">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="estado" class="form-label">Estado</label>
+              <input type="text" class="form-control" id="estado" aria-describedby="">
+            </div>
+            <div class="col">
+              <label for="muni" class="form-label">Municipio</label>
+              <input type="text" class="form-control" id="muni" aria-describedby="">
+            </div>
+          </div>
+
+          <h4 class="mt-3">Informacion relacionada</h4>
+           <hr>
+          <div class="row">
+            <div class="col">
+              <label for="estatus" class="form-label">Estatus</label>
+              <select name="" id="estatus" class="form-control">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="histAc" class="form-label">Historial academico</label>
+              <select name="" id="estatus" class="form-control">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="antLab" class="form-label">Ant. Laborales</label>
+              <select name="" id="antLab" class="form-control">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="antSoc" class="form-label">ID Ante. Sociales</label>
+              <input type="number" name="" id="antSoc" class="form-control">
+            </div>
+            <div class="col">
+              <label for="refPer" class="form-label">ID Ref. Personales</label>
+              <input type="number" name="" id="refPer" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="invLeg" class="form-label">ID Inv. Legal</label>
+              <input type="number" name="" id="invLeg" class="form-control">
+            </div>
+            <div class="col">
+              <label for="traNoMen" class="form-label">Trabajos no mencionados</label>
+              <select name="" id="traNoMen" class="form-control">
+                <option value="1">Si</option>
+                <option value="0">No</option>
+              </select>
+            </div>
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>

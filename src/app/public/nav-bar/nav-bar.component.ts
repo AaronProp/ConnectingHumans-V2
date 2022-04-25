@@ -11,87 +11,68 @@ export class NavBarComponent implements OnInit {
 
   //Atributos de Clase
   user_name:string;
+  usuarioActual:any;
+  permiso:string;
+
 
   constructor(private router:Router, private servicio:CentralDatosService) {
     //Obteneniendo el nombre del usuario
-    this.user_name = String(localStorage.getItem('user_name'))
+    this.user_name = String(localStorage.getItem('usuario'))
+    this.usuarioActual = this.servicio.sesionActual;
+    this.permiso = String(localStorage.getItem('permiso'))
    }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-  usuarioActual = this.servicio.sesionActual;
+   usr_sis = localStorage.getItem('usr_sis');
+   usr_candidato = localStorage.getItem('candidato');
+   usr_cliente = localStorage.getItem('cliente');
+   usr_lab = localStorage.getItem('lab');
+
 
   cerrarSesion(){
     //Eliminando variables de sesion que no estan en el local sesion
-    localStorage.removeItem('user_name');
+    localStorage.removeItem('idUsr');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('sesion');
+    localStorage.removeItem('cliente');
+    localStorage.removeItem('candidato');
+    localStorage.removeItem('lab');
+    localStorage.removeItem('usr_sis');
     localStorage.removeItem('token');
     //Redireccionando
     this.router.navigateByUrl('/')
   }
 
-  rutaCandidatos(){
-    switch(this.servicio.sesionActual.idCatPermisos){
-      case 1:
-        this.router.navigate(['admin/candidatos'])
-      break;
-      case 2:
-        this.router.navigate(['admin/candidatos'])
-      break;
-      case 3:
-        this.router.navigate(['usuario/candidatos'])
-      break;
-      case 4:
-        this.router.navigate(['cliente/candidatos'])
-      break;
+  irInicio(){
+    if(this.usr_sis != null){
+      this.router.navigate(['usuario/dashboard'])
+    }else if (this.usr_candidato != null){
+      this.router.navigate(['candidato/dashboard'])
+    }else if (this.usr_cliente != null){
+      this.router.navigate(['cliente/dashboard'])
+    }else if (this.usr_lab != null){
+      this.router.navigate(['laboratorio/dashboard'])
     }
   }
+  rutaCandidatos(){
+      if(this.usr_sis != null){
+        this.router.navigate(['usuario/candidatos']);
+      }
+    }
   rutaClientes(){
-    switch(this.servicio.sesionActual.idCatPermisos){
-      case 1:
-        this.router.navigate(['admin/clientes'])
-      break;
-      case 2:
-        this.router.navigate(['admin/clientes'])
-      break;
-      case 3:
-        this.router.navigate(['usuario/clientes'])
-      break;
-      case 4:
-        this.router.navigate(['cliente/clientes'])
-      break;
+    if(this.usr_sis != null){
+      this.router.navigate(['usuario/clientes']);
     }
   }
   rutaUsuarios(){
-    switch(this.servicio.sesionActual.idCatPermisos){
-      case 1:
-        this.router.navigate(['admin/usuarios'])
-      break;
-      case 2:
-        this.router.navigate(['admin/usuarios'])
-      break;
-      case 3:
-        this.router.navigate(['usuario/usuarios'])
-      break;
-      case 4:
-        this.router.navigate(['cliente/usuarios'])
-      break;
+    if(this.usr_sis != null){
+      this.router.navigate(['usuario/usuarios']);
     }
   }
   rutaLabs(){
-    switch(this.servicio.sesionActual.idCatPermisos){
-      case 1:
-        this.router.navigate(['admin/laboratorios'])
-      break;
-      case 2:
-        this.router.navigate(['admin/laboratorios'])
-      break;
-      case 3:
-        this.router.navigate(['usuario/laboratorios'])
-      break;
-      case 4:
-        this.router.navigate(['cliente/laboratorios'])
-      break;
+    if(this.usr_sis != null){
+      this.router.navigate(['usuario/laboratorios']);
     }
   }
 

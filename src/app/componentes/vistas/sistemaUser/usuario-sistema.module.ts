@@ -8,6 +8,8 @@ import { CandidatosComponent } from './vistasUser/candidatos/candidatos.componen
 import { ClientesComponent } from './vistasUser/clientes/clientes.component';
 import { PublicModule } from 'src/app/public/public.module';
 import { DashboardComponent } from './vistasUser/dashboard/dashboard.component';
+import { UsuariosComponent } from './vistasUser/usuarios/usuarios.component';
+import { LaboratoriosComponent } from './vistasUser/laboratorios/laboratorios.component';
 
 
 
@@ -23,7 +25,9 @@ import { DashboardComponent } from './vistasUser/dashboard/dashboard.component';
     CuerpoComponent,
     CandidatosComponent,
     ClientesComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsuariosComponent,
+    LaboratoriosComponent
   ],
   imports: [
     CommonModule,

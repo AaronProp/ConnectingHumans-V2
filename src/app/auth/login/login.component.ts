@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
 
   constructor( private servicio: CentralDatosService, private router:Router) { }
   _usuario!: AuthResp;
-  _sesiones!:Sesion[];
   _sesionAct!:Sesion;
 
   errInicioSesion:boolean = false;
@@ -30,10 +29,6 @@ export class LoginComponent implements OnInit {
 
   getUsuario(){
     return {...this._usuario};
-  }
-
-  getSesiones(){
-    return {...this._sesiones};
   }
 
   getSesionAct(){
@@ -55,61 +50,38 @@ export class LoginComponent implements OnInit {
   iniciarSesion(){
     let inputUsr = this.loginForm?.controls["usuario"]?.value;
     let inputPass = this.loginForm?.controls["pass"]?.value;
-    let posAct = 0;
-
-     this.servicio.getSesiones()
-     .subscribe(resp => {
-       this._sesiones = resp
-       
-       this._sesiones.forEach(element => {
-        if(element.usuario == inputUsr && element.clave == inputPass){
-          this._sesionAct = element;
 
         this.servicio.iniciarSesion(inputUsr,inputPass)
         .subscribe(resp => {
           if(resp.token == undefined){
-            //Es necesario que lancemos un mensaje cuando la sesion no se haya podido iniciar
-            //IDEA
-            //Crear un alert dentro de un ngIf, con una bandera abajo hacemos que nunca se muestre,
-            //luego si da error al iniciar sesion, entonces levantas la bandera logrando que se muestre el mensaje de error
-            //despues con un setTimeOut de 5s vuelves a bajar la bandera y se ocultara
             console.log(resp.msg)
+            this.errInicioSesion = true
+            setTimeout(this.cambioBandera,5000)
           }else{
-            this._usuario = {
-              usuario: resp.usuario!,
-              token: resp.token! 
-            }
-            localStorage.setItem('token', `${resp.token}`);
-            localStorage.setItem('user_name',`${resp.usuario}`);
+            console.log(resp)
+            this.servicio.sesionActual = resp;
+            this._sesionAct = resp;
 
-            this.servicio.sesionActual = element;
-            console.log(this.servicio.sesionActual)
+            localStorage.setItem('id',resp.id!)
+            localStorage.setItem('usuario',resp.usuario!)
+            localStorage.setItem('sesion',resp.sesion!)
+            localStorage.setItem('cliente',resp.idCliente!)
+            localStorage.setItem('candidato',resp.idCandidato!)
+            localStorage.setItem('lab',resp.idLaboratorio!)
+            localStorage.setItem('usr_sis',resp.idUsuarioSistema!)
+            localStorage.setItem('permiso',resp.permiso!)
+            localStorage.setItem('token',resp.token!)
 
-            switch(element.idCatPermisos){
-              case 1:
-                this.router.navigateByUrl('/admin')
-                break;
-              case 2:
-                this.router.navigateByUrl('/admin')
-                break;
-              case 3:
-                this.router.navigateByUrl('/usuario')
-                break;
-              case 4:
-                this.router.navigateByUrl('/cliente')
-                break;
+            if(resp.idUsuarioSistema != null){
+              this.router.navigate(['usuario/dashboard'])
+            }else if (resp.idCandidato != null){
+              this.router.navigate(['candidato/dashboard'])
+            }else if (resp.idCliente != null){
+              this.router.navigate(['cliente/dashboard'])
+            }else if (resp.idLaboratorio != null){
+              this.router.navigate(['laboratorio/dashboard'])
             }
           }
         })
-        return;
-         }else{
-          posAct++
-          if( posAct == this._sesiones.length){
-            this.errInicioSesion = true
-            setTimeout(this.cambioBandera,5000)
-          }
-         }
-       });
-     })
   }
 }

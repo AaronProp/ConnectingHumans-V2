@@ -12,5 +12,4 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  titulos=["1","2","3"]
 }

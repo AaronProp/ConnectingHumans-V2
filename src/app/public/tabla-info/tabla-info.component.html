@@ -1,41 +1,104 @@
 <div class="container">
   <table class="table table-hover">
     <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+      <tr class="text-center">
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">ID Usuario a cargo</th>
+        <th scope="col">Cliente enlace</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+      <tr *ngFor="let candidato of candidatos" class="text-center">
+        <th scope="row">{{candidato.idCandidato}}</th>
+        <td>{{candidato.nombre}}</td>
+        <td>{{candidato.idUsuario}}</td>
+        <td>{{candidato.idCliente}}</td>
         <td>
-          <img class="btn" src="assets/imagenes/icons/add.png" alt="">
-          <img class="btn" src="assets/imagenes/icons/editing.png" alt="">
-          <img class="btn" src="assets/imagenes/icons/delete.png" alt="">
+          <img class="btn" data-bs-toggle="modal" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png">
+          <img class="btn" data-bs-toggle="modal" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" alt="">
+          <img class="btn" data-bs-toggle="modal" data-bs-target="#delModal" src="assets/imagenes/icons/delete.png" alt="">
         </td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td>@mdo</td>
-
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-        <td>@mdo</td>
-
       </tr>
     </tbody>
   </table>
+</div>
+
+<!-- Modal Detalles-->
+<div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles de Nombre</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Fecha de nacimiento:
+        Lugar de nacimientio:
+        Genero:
+        Estado civil:
+        Edad:
+        Estudios:
+        Nombre: Nombre Apellido1 Apellido2
+        Telefono:
+        Telefono 2:
+        Correo electronico:
+        Direccion: calle1, calle2,estado, municipio,CP, numInt, numExt
+        Estado: Activo/Inactivo (1/0)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editando a Nombre</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Fecha de nacimiento:
+        Lugar de nacimientio:
+        Genero:
+        Estado civil:
+        Edad:
+        Estudios:
+        Nombre: Nombre Apellido1 Apellido2
+        Telefono:
+        Telefono 2:
+        Correo electronico:
+        Direccion: calle1, calle2,estado, municipio,CP, numInt, numExt
+        Estado: Activo/Inactivo (1/0)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar-->
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Nombre</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se eliminara este registro de forma permanente. Desea continuar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
 </div>
