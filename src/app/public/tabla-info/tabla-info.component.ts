@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CentralDatosService } from 'src/app/central-datos.service';
 import { Candidato } from 'src/app/interfaces/global.interface'
 
@@ -8,6 +8,9 @@ import { Candidato } from 'src/app/interfaces/global.interface'
   styleUrls: ['./tabla-info.component.css']
 })
 export class TablaInfoComponent implements OnInit {
+
+  candidatos:Candidato[] = []
+  usuarioSeleccionado!:Candidato;
 
   constructor( private servicio:CentralDatosService) { }
 
@@ -20,10 +23,12 @@ export class TablaInfoComponent implements OnInit {
     )
   }
 
-  candidatos:Candidato[] = []
 
-  detCandidato(){
-    
+  detCandidato(registro:any){
+    this.candidatos.forEach(element => {
+      if(element.idCandidato == registro){
+        this.usuarioSeleccionado = element
+      }
+    });
   }
-
 }

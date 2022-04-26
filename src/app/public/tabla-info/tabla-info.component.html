@@ -16,7 +16,7 @@
         <td>{{candidato.idUsuario}}</td>
         <td>{{candidato.idCliente}}</td>
         <td>
-          <img class="btn" data-bs-toggle="modal" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png">
+          <img class="btn" data-bs-toggle="modal" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png" (click)="detCandidato(candidato.idCandidato)">
           <img class="btn" data-bs-toggle="modal" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" alt="">
           <img class="btn" data-bs-toggle="modal" data-bs-target="#delModal" src="assets/imagenes/icons/delete.png" alt="">
         </td>
@@ -30,22 +30,95 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalles de Nombre</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Detalles de {{usuarioSeleccionado.nombre}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Fecha de nacimiento:
-        Lugar de nacimientio:
-        Genero:
-        Estado civil:
-        Edad:
-        Estudios:
-        Nombre: Nombre Apellido1 Apellido2
-        Telefono:
-        Telefono 2:
-        Correo electronico:
-        Direccion: calle1, calle2,estado, municipio,CP, numInt, numExt
-        Estado: Activo/Inactivo (1/0)
+        <div class="row">
+          <div class="col">
+            <b>Fecha de nacimiento:</b><span>{{usuarioSeleccionado.fechaNacimiento}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Lugar de nacimientio:</b><span>{{usuarioSeleccionado.lugarNacimiento}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Genero:</b><span>{{usuarioSeleccionado.genero}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Estado civil:</b><span>{{usuarioSeleccionado.estadoCivil}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Edad:</b><span>{{usuarioSeleccionado.edad}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Estudios:</b><span>{{usuarioSeleccionado.gradoMaxEstudios}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Nombre:</b><span>{{usuarioSeleccionado.nombre}} {{usuarioSeleccionado.apellidoPaterno}} {{usuarioSeleccionado.apellidoMaterno}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono:</b><span>{{usuarioSeleccionado.telefono}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono 2:</b><span>{{usuarioSeleccionado.telefonoAlternativo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Correo electronico:</b><span>{{usuarioSeleccionado.correo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Direccion:</b><span> {{usuarioSeleccionado.calle}} {{usuarioSeleccionado.numInterior}} {{usuarioSeleccionado.numExterior}} {{usuarioSeleccionado.calleCruza1}} {{usuarioSeleccionado.calleCruza2}} {{usuarioSeleccionado.estado}} {{usuarioSeleccionado.municipio}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Estado:</b><span>{{usuarioSeleccionado.estatus}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Tiene historial academico?:</b><span>{{usuarioSeleccionado.tieneHistorialAcademico}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>ID Ant. Sociales:</b><span>{{usuarioSeleccionado.idAntecedentesSociales}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>ID Ref. Personales:</b><span>{{usuarioSeleccionado.idReferenciasPersonales}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>ID Inv. Legal:</b><span>{{usuarioSeleccionado.idInvestigacionLegal}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Trabajos no mencionados:</b><span>{{usuarioSeleccionado.tieneTrabajosNoMencionados}}</span>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
