@@ -9,6 +9,7 @@ export class CentralDatosService {
 
   constructor(private http: HttpClient) { }
   urlBase: string = 'http://localhost:8080/';
+  urlBaseWeb:string = 'http://localhost:4200/'
   sesionActual!:Sesion;
   
   getCandidatos(){

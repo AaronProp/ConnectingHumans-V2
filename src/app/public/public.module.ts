@@ -4,6 +4,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TablaInfoComponent } from './tabla-info/tabla-info.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { FiltrosTablaComponent } from './filtros-tabla/filtros-tabla.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +17,8 @@ import { FiltrosTablaComponent } from './filtros-tabla/filtros-tabla.component';
     FiltrosTablaComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   exports:[
     NavBarComponent,

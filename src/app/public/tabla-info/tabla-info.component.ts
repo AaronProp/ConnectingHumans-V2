@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
 import { Candidato } from 'src/app/interfaces/global.interface'
 
@@ -9,26 +10,43 @@ import { Candidato } from 'src/app/interfaces/global.interface'
 })
 export class TablaInfoComponent implements OnInit {
 
+  urlAct = String(location.href)
   candidatos:Candidato[] = []
-  usuarioSeleccionado!:Candidato;
-
-  constructor( private servicio:CentralDatosService) { }
-
+  usuarioSeleccionado!: Candidato;
+  
+  
+  constructor( private servicio:CentralDatosService, private fb:FormBuilder) { }
+  
   ngOnInit(): void {
-    this.servicio.getCandidatos()
-    .subscribe(resp => {
-      console.log(resp)
-      this.candidatos = resp;
+    if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
+        this.servicio.getCandidatos()
+          .subscribe(resp => {
+            console.log(resp)
+            this.candidatos = resp;
+        }
+      )
     }
-    )
   }
 
+  //Estructura de formulario de edicion
+  miFormulario = this.fb.group({
+    nombre:['Aaron']
+  })
 
-  detCandidato(registro:any){
+  detRegistro(registro:any){
     this.candidatos.forEach(element => {
       if(element.idCandidato == registro){
         this.usuarioSeleccionado = element
       }
     });
   }
+
+  elimRegistro(registro:any){
+    this.candidatos.forEach(element => {
+      if(element.idCandidato == registro){
+        this.usuarioSeleccionado = element
+      }
+    });
+  }
+
 }
