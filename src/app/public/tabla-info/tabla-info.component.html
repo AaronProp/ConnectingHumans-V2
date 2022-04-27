@@ -16,9 +16,9 @@
         <td>{{candidato.idUsuario}}</td>
         <td>{{candidato.idCliente}}</td>
         <td>
-          <img class="btn" data-bs-toggle="modal tooltip" title="Ver detalles" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png" (click)="detRegistro(candidato.idCandidato)">
-          <img class="btn" data-bs-toggle="modal tooltip" title="Editar" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" alt="">
-          <img class="btn" data-bs-toggle="modal tooltip" title="Eliminar" data-bs-target="#delModal" src="assets/imagenes/icons/delete.png" (click)="elimRegistro(candidato.idCandidato)">
+          <img class="btn" data-bs-toggle="modal" title="Ver detalles" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png" (click)="detRegistro(candidato.idCandidato)">
+          <img class="btn" data-bs-toggle="modal" title="Editar" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" (click)="editRegistro(candidato.idCandidato)">
+          <img class="btn" data-bs-toggle="modal" title="Eliminar" data-bs-target="#delModal" src="assets/imagenes/icons/delete.png" (click)="elimRegistro(candidato.idCandidato)">
         </td>
       </tr>
     </tbody>
@@ -26,7 +26,8 @@
 </div>
 
 <!-- Modal Detalles-->
-<div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -137,12 +138,13 @@
   </div>
 </div>
 
+
 <!-- Modal Editar-->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar registro</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar registro {{usuarioSeleccionado.nombre}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -156,25 +158,25 @@
          </div>
          <div class="col">
            <label for="apellido1" class="form-label">Apellido materno</label>
-           <input type="text" class="form-control" id="apellido1" aria-describedby="">
+           <input type="text" class="form-control" id="apellido1" formControlName="apellidoPaterno">
          </div>
          <div class="col">
            <label for="apellido2" class="form-label">Apellido paterno</label>
-           <input type="text" class="form-control" id="apllido2" aria-describedby="">
+           <input type="text" class="form-control" id="apllido2" formControlName="apellidoMaterno">
          </div>
         </div>
 
         <div class="row">
           <div class="col">
            <label for="genero" class="form-label">Genero</label>
-           <select class="form-control" name="" id="genero">
+           <select class="form-control" name="" id="genero" formControlName="genero">
              <option value="M">M</option>
              <option value="H">H</option>
            </select>
           </div>
           <div class="col">
            <label for="eCivil" class="form-label">Estado civil</label>
-           <select class="form-control" name="" id="eCivil">
+           <select class="form-control" name="" id="eCivil" formControlName="estadoCivil">
              <option value="Soltero">Soltero/a</option>
              <option value="Casado">Casado/a</option>
              <option value="Divorciado">DIvorciado/a</option>
@@ -186,7 +188,7 @@
         <div class="row">
          <div class="col">
            <label for="estudios" class="form-label">Maximo grado de estudios</label>
-           <select class="form-control" name="" id="estudios">
+           <select class="form-control" name="" id="estudios" formControlName="gradoMaxEstudios">
              <option value="Primaria">Primaria</option>
              <option value="Secundaria">Secundaria</option>
              <option value="Preparatoria">Preparatoria</option>
@@ -201,11 +203,11 @@
         <div class="row">
           <div class="col">
            <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
-           <input type="date" class="form-control" id="fechaNac" aria-describedby="">
+           <input type="date" class="form-control" id="fechaNac" formControlName="fechaNacimiento">
           </div>
           <div class="col">
            <label for="ciudadNat" class="form-label">Cuidad natal</label>
-           <input type="text" class="form-control" id="ciudadNat" aria-describedby="">
+           <input type="text" class="form-control" id="ciudadNat" formControlName="lugarNacimiento">
           </div>
         </div>
 
@@ -214,17 +216,17 @@
         <div class="row">
           <div class="col">
            <label for="telefono1" class="form-label">Telefono principal</label>
-           <input type="tel" class="form-control" id="telefono1" aria-describedby="">
+           <input type="tel" class="form-control" id="telefono1" formControlName="telefono">
           </div>
           <div class="col">
            <label for="telefono2" class="form-label">Telefono secundario</label>
-           <input type="tel" class="form-control" id="telefono2" aria-describedby="">
+           <input type="tel" class="form-control" id="telefono2" formControlName="telefonoAlternativo">
           </div>
         </div>
         <div class="row">
          <div class="col">
           <label for="correo" class="form-label">Correo electronico</label>
-          <input type="mail" class="form-control" id="correo" aria-describedby="">
+          <input type="mail" class="form-control" id="correo" formControlName="correo">
          </div>
        </div>
        
@@ -233,39 +235,39 @@
        <div class="row">
          <div class="col">
            <label for="calle" class="form-label">Calle</label>
-           <input type="text" class="form-control" id="calle" aria-describedby="">
+           <input type="text" class="form-control" id="calle" formControlName="calle">
          </div>
          <div class="col">
            <label for="calle1" class="form-label">Cruce 1</label>
-           <input type="text" class="form-control" id="calle1" aria-describedby="">
+           <input type="text" class="form-control" id="calle1" formControlName="calleCruza1">
          </div>
          <div class="col">
            <label for="calle2" class="form-label">Cruce 2</label>
-           <input type="text" class="form-control" id="calle2" aria-describedby="">
+           <input type="text" class="form-control" id="calle2" formControlName="calleCruza2">
          </div>
        </div>
        <div class="row">
          <div class="col">
            <label for="numInt" class="form-label">Num. Int.</label>
-           <input type="number" class="form-control" id="numInt" aria-describedby="">
+           <input type="number" class="form-control" id="numInt" formControlName="numInterior">
          </div>
          <div class="col">
            <label for="numExt" class="form-label">Num. Ext.</label>
-           <input type="text" class="form-control" id="numExt" aria-describedby="">
+           <input type="text" class="form-control" id="numExt" formControlName="numExterior">
          </div>
          <div class="col">
            <label for="cp" class="form-label">Codigo postal</label>
-           <input type="number" class="form-control" id="cp" aria-describedby="">
+           <input type="number" class="form-control" id="cp" formControlName="cp">
          </div>
        </div>
        <div class="row">
          <div class="col">
            <label for="estado" class="form-label">Estado</label>
-           <input type="text" class="form-control" id="estado" aria-describedby="">
+           <input type="text" class="form-control" id="estado" formControlName="estado">
          </div>
          <div class="col">
            <label for="muni" class="form-label">Municipio</label>
-           <input type="text" class="form-control" id="muni" aria-describedby="">
+           <input type="text" class="form-control" id="muni" formControlName="municipio">
          </div>
        </div>
 
@@ -274,21 +276,21 @@
        <div class="row">
          <div class="col">
            <label for="estatus" class="form-label">Estatus</label>
-           <select name="" id="estatus" class="form-control">
+           <select name="" id="estatus" class="form-control" formControlName="estatus">
              <option value="1">Activo</option>
              <option value="0">Inactivo</option>
            </select>
          </div>
          <div class="col">
            <label for="histAc" class="form-label">Historial academico</label>
-           <select name="" id="estatus" class="form-control">
+           <select name="" id="estatus" class="form-control" formControlName="tieneHistorialAcademico">
              <option value="1">Si</option>
              <option value="0">No</option>
            </select>
          </div>
          <div class="col">
            <label for="antLab" class="form-label">Ant. Laborales</label>
-           <select name="" id="antLab" class="form-control">
+           <select name="" id="antLab" class="form-control" formControlName="tieneAntecedentesLaborales">
              <option value="1">Si</option>
              <option value="0">No</option>
            </select>
@@ -297,21 +299,21 @@
        <div class="row">
          <div class="col">
            <label for="antSoc" class="form-label">ID Ante. Sociales</label>
-           <input type="number" name="" id="antSoc" class="form-control">
+           <input type="number" name="" id="antSoc" class="form-control" formControlName="idAntecedentesSociales">
          </div>
          <div class="col">
            <label for="refPer" class="form-label">ID Ref. Personales</label>
-           <input type="number" name="" id="refPer" class="form-control">
+           <input type="number" name="" id="refPer" class="form-control" formControlName="idReferenciasPersonales">
          </div>
        </div>
        <div class="row">
          <div class="col">
            <label for="invLeg" class="form-label">ID Inv. Legal</label>
-           <input type="number" name="" id="invLeg" class="form-control">
+           <input type="number" name="" id="invLeg" class="form-control" formControlName="idInvestigacionLegal">
          </div>
          <div class="col">
            <label for="traNoMen" class="form-label">Trabajos no mencionados</label>
-           <select name="" id="traNoMen" class="form-control">
+           <select name="" id="traNoMen" class="form-control" formControlName="tieneTrabajosNoMencionados">
              <option value="1">Si</option>
              <option value="0">No</option>
            </select>

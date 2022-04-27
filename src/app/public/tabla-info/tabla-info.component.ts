@@ -11,29 +11,38 @@ import { Candidato } from 'src/app/interfaces/global.interface'
 export class TablaInfoComponent implements OnInit {
 
   urlAct = String(location.href)
-  candidatos:Candidato[] = []
+  candidatos!:Candidato[];
   usuarioSeleccionado!: Candidato;
-  
+
+  miFormulario:any;
   
   constructor( private servicio:CentralDatosService, private fb:FormBuilder) { }
   
-  ngOnInit(): void {
+  ngOnInit() {
     if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
         this.servicio.getCandidatos()
           .subscribe(resp => {
-            console.log(resp)
+            console.log('Llenado de candidatos[]')
             this.candidatos = resp;
         }
       )
     }
   }
 
-  //Estructura de formulario de edicion
-  miFormulario = this.fb.group({
-    nombre:['Aaron']
-  })
+   detRegistro(registro:number){ 
+    this.candidatos.forEach(element => {
+      if(element.idCandidato == registro){
+        this.usuarioSeleccionado = element
 
-  detRegistro(registro:any){
+        //Estructura de formulario de edicion
+        this.miFormulario = this.fb.group({
+        })
+      }
+    });
+    
+  }
+
+  editRegistro(registro:number){
     this.candidatos.forEach(element => {
       if(element.idCandidato == registro){
         this.usuarioSeleccionado = element
@@ -41,7 +50,7 @@ export class TablaInfoComponent implements OnInit {
     });
   }
 
-  elimRegistro(registro:any){
+  elimRegistro(registro:number){
     this.candidatos.forEach(element => {
       if(element.idCandidato == registro){
         this.usuarioSeleccionado = element
