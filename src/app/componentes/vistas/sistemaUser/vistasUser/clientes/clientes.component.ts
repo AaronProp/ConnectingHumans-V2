@@ -65,9 +65,9 @@ catPaquetes: CatPaquete[] = [];
     if(this.miFormulario.invalid){
       console.log('Faltan campos por llenar')
     }else{
-      this.servicio.postCandidato(this.miFormulario.value)
+      this.servicio.postCliente(this.miFormulario.value).subscribe( res => (console.log(`Respuesta API -> ${res.msj}`)))
       console.log(this.miFormulario.value)
-      this.miFormulario.reset();
+      //this.miFormulario.reset();
     }
   }
 

@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let registro of registros" class="text-center">
+      <tr *ngFor="let registro of registros | paginate: { itemsPerPage: 6, currentPage: page }" class="text-center">
         <th scope="row">{{registro.idCandidato}}</th>
         <td>{{registro.nombre}}</td>
         <td>{{registro.idUsuario}}</td>
@@ -23,6 +23,7 @@
       </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 </div>
 
 <!-- Modal Detalles CANDIDATO-->
@@ -297,6 +298,10 @@
 
         <div class="row">
           <div class="col">
+            <label for="idUsr" class="form-label">ID Candidato</label>
+            <input type="number" class="form-control" id="idUsr" value="{{usuarioSeleccionado.idCandidato}}">
+          </div>
+          <div class="col">
            <label for="genero" class="form-label">Genero</label>
            <select class="form-control" name="" id="genero">
              <option *ngFor="let genero of catGenero" value="{{genero.descripcion}}">{{genero.descripcion}}</option>
@@ -391,60 +396,11 @@
            <input type="text" class="form-control" id="muni" value="{{usuarioSeleccionado.municipio}}">
          </div>
        </div>
-
-       <h4 class="mt-3">Informacion relacionada</h4>
-        <hr>
-       <div class="row">
-         <div class="col">
-           <label for="estatus" class="form-label">Estatus</label>
-           <select name="" id="estatus" class="form-control">
-             <option value="1">Activo</option>
-             <option value="0">Inactivo</option>
-           </select>
-         </div>
-         <div class="col">
-           <label for="histAc" class="form-label">Historial academico</label>
-           <select name="" id="estatus" class="form-control">
-             <option value="1">Si</option>
-             <option value="0">No</option>
-           </select>
-         </div>
-         <div class="col">
-           <label for="antLab" class="form-label">Ant. Laborales</label>
-           <select name="" id="antLab" class="form-control">
-             <option value="1">Si</option>
-             <option value="0">No</option>
-           </select>
-         </div>
-       </div>
-       <div class="row">
-         <div class="col">
-           <label for="antSoc" class="form-label">ID Ante. Sociales</label>
-           <input type="number" name="" id="antSoc" class="form-control" value="{{usuarioSeleccionado.idAntecedentesSociales}}">
-         </div>
-         <div class="col">
-           <label for="refPer" class="form-label">ID Ref. Personales</label>
-           <input type="number" name="" id="refPer" class="form-control" value="{{usuarioSeleccionado.idReferenciasPersonales}}">
-         </div>
-       </div>
-       <div class="row">
-         <div class="col">
-           <label for="invLeg" class="form-label">ID Inv. Legal</label>
-           <input type="number" name="" id="invLeg" class="form-control" value="{{usuarioSeleccionado.idInvestigacionLegal}}">
-         </div>
-         <div class="col">
-           <label for="traNoMen" class="form-label">Trabajos no mencionados</label>
-           <select name="" id="traNoMen" class="form-control">
-             <option value="1">Si</option>
-             <option value="0">No</option>
-           </select>
-         </div>
-       </div>
        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" class="btn btn-primary" (click)="editarRegistro()">Guardar</button>
       </div>
     </div>
   </div>
@@ -705,11 +661,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Se eliminara este registro de forma permanente. Desea continuar?</p>
+        <p>Se eliminara este registro: {{usuarioSeleccionado.idCandidato}} de forma permanente. Desea continuar?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="elimRegistroModal()">Eliminar</button>
       </div>
     </div>
   </div>

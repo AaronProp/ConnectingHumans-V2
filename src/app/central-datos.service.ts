@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthResp,Sesion,Candidato,CatGenero, CatEstadoCivil, CatEscolaridad, Cliente, Laboratorio, UsuarioSistema, CatPaquete } from '../app/interfaces/global.interface'
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CentralDatosService {
 
+  private _refresh$ = new Subject<void>();
+
+  headers = new HttpHeaders({
+    'content-type': 'application/json',
+    'Access-Control-Allow-Origin':`http://localhost:4200/usuario/candidatos`
+  })
+
   constructor(private http: HttpClient) { }
   urlBase: string = 'http://localhost:8080/';
   urlBaseWeb:string = 'http://localhost:4200/'
   sesionActual!:Sesion;
+
+
+  get refresh$(){
+    return this._refresh$
+  }
 
   // Getters de Catalogos
   getCatGenero(){
@@ -47,19 +61,44 @@ export class CentralDatosService {
   }
 
   //POSTS CREAR
-  postCandidato(nuevoCandidato:any){
-    this.http.post<any>(`${this.urlBase}candidato/_C`,nuevoCandidato)
+  postCandidato(nuevoCandidato:any): Observable<any>{
+   return this.http.post<any>(`${this.urlBase}candidato/_C`,nuevoCandidato)
+   .pipe(
+     tap(()=>{
+       this._refresh$.next();
+     })
+   )
   }
 
-  postCliente(nuevoCliente:any){
-    this.http.post<any>(`${this.urlBase}cliente/_C`,nuevoCliente)
+  postCliente(nuevoCliente:any): Observable<any>{
+    return this.http.post<any>(`${this.urlBase}cliente/_C`,nuevoCliente)
+    .pipe(
+      tap(()=>{
+        this._refresh$.next();
+      })
+    )
+  }
+
+  postLaboratorio(nuevoLaboratorio:any): Observable<any>{
+    return this.http.post<any>(`${this.urlBase}laboratorio/_C`,nuevoLaboratorio)
+    .pipe(
+      tap(()=>{
+        this._refresh$.next();
+      })
+    )
   }
 
   //POSTS DE EDITAR
-  editarCandidato(nuevoCandidato:any){
-    this.http.post<any>(`${this.urlBase}cliente/_U`,nuevoCandidato)
+  editarCandidato(candidato:any): Observable<any>{
+    return this.http.post<any>(`${this.urlBase}candidato/_U`,candidato,{headers:this.headers})
   }
 
+//POSTS DE ELIMINAR
+eliminarCandidato(elimCandidato:any): Observable<any>{
+  return this.http.post<any>(`${this.urlBase}cliente/_D`,elimCandidato,{headers:this.headers})
+}
+
+//POSTS FUNCIONALES
   iniciarSesion(user:string,password:string){
     return this.http.post<AuthResp>(`${this.urlBase}autenticacion/login`,{"Usuario": `${user}`,"Password": `${password}`})
   }

@@ -11,11 +11,11 @@ import { CatGenero, CatEstadoCivil, CatEscolaridad } from 'src/app/interfaces/gl
 export class CandidatosComponent implements OnInit {
 
   miFormulario:FormGroup = this.fb.group({
-        idUsuario: [""],
-        idCliente: [1],
-        idCandidato: [""],
-        idLaboratorio: ["null"],
-        idUsuarioSistema:[1],
+        idUsuario: ["",],
+        idCliente: ["17",Validators.required],
+        idCandidato: ["",],
+        idLaboratorio: ["null",Validators.required],
+        idUsuarioSistema:["1",Validators.required],
         fechaNacimiento: [,Validators.required],
         lugarNacimiento: [,Validators.required],
         genero: [,Validators.required],
@@ -24,15 +24,15 @@ export class CandidatosComponent implements OnInit {
         gradoMaxEstudios: [,Validators.required],
         nombre: [,Validators.required],
         apellidoPaterno: [,Validators.required],
-        apellidoMaterno: [],
-        telefono: [],
-        telefonoAlternativo: [],
-        correo: [],
+        apellidoMaterno: [,Validators.required],
+        telefono: [,Validators.required],
+        telefonoAlternativo: [,Validators.required],
+        correo: [,Validators.required],
         calle: [,Validators.required],
-        numInterior: [],
+        numInterior: [,Validators.required],
         numExterior: [,Validators.required],
-        calleCruza1: [],
-        calleCruza2: [],
+        calleCruza1: [,Validators.required],
+        calleCruza2: [,Validators.required],
         estado: [,Validators.required],
         municipio: [,Validators.required],
         cp: [,Validators.required]
@@ -74,9 +74,9 @@ export class CandidatosComponent implements OnInit {
     if(this.miFormulario.invalid){
       console.log('Faltan campos por llenar')
     }else{
-      this.servicio.postCandidato(this.miFormulario.value)
+      this.servicio.postCandidato(this.miFormulario.value).subscribe(res =>console.log(`Respuesta de API ->${res.msj}`))
       console.log(this.miFormulario.value)
-      //this.miFormulario.reset();
+      this.miFormulario.reset();
     }
   }
 

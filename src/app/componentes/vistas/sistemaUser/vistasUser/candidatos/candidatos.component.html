@@ -27,48 +27,52 @@
         <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="crearCandidato()">
           <div class="row my-2">
             <div class="col">
-              <small class="text-danger">Campos obligatorios <span class="text-danger">*</span></small>
+              <small class="text-danger">En caso de que algunos de los campos no apliquen, poner como valor 'NA' <span class="text-danger">*</span></small>
             </div>
           </div>
           <h4>Informacion personal</h4>
           <hr>
           <div class="row">
+            <div class="col">
+              <label for="idCliente" class="form-label">ID Cliente</label>
+              <input type="text" class="form-control" id="idCliente" formControlName="idCliente">
+            </div>
            <div class="col">
-             <label for="nombre" class="form-label">Nombre(s) <span class="text-danger">*</span></label>
+             <label for="nombre" class="form-label">Nombre(s)</label>
              <input type="text" class="form-control" id="nombre" formControlName="nombre">
            </div>
            <div class="col">
-             <label for="apellido1" class="form-label">Apellido paterno <span class="text-danger">*</span></label>
+             <label for="apellido1" class="form-label">Apellido paterno</label>
              <input type="text" class="form-control" id="apellido1" formControlName="apellidoPaterno">
            </div>
            <div class="col">
-             <label for="apellido2" class="form-label">Apellido materno</label>
+             <label for="apellido2" class="form-label">Apellido materno <span class="text-danger">*</span></label>
              <input type="text" class="form-control" id="apllido2" formControlName="apellidoMaterno">
            </div>
           </div>
   
           <div class="row">
             <div class="col">
-             <label for="genero" class="form-label">Genero <span class="text-danger">*</span></label>
+             <label for="genero" class="form-label">Genero</label>
              <select class="form-control" name="" id="genero" formControlName="genero">
                <option *ngFor="let genero of catGenero" value="{{genero.descripcion}}">{{genero.descripcion}}</option>
              </select>
             </div>
             <div class="col">
-             <label for="eCivil" class="form-label">Estado civil <span class="text-danger">*</span></label>
+             <label for="eCivil" class="form-label">Estado civil</label>
              <select class="form-control" name="" id="eCivil" formControlName="estadoCivil">
               <option *ngFor="let estadoCivil of catEstadoCivil" value="{{estadoCivil.descripcion}}">{{estadoCivil.descripcion}}</option>
              </select>
             </div>
             <div class="col">
-              <label for="edad" class="form-label">Edad <span class="text-danger">*</span></label>
+              <label for="edad" class="form-label">Edad</label>
               <input type="number" class="form-control" id="edad" formControlName="edad">
              </div>
           </div>
   
           <div class="row">
            <div class="col">
-             <label for="estudios" class="form-label">Maximo grado de estudios <span class="text-danger">*</span></label>
+             <label for="estudios" class="form-label">Maximo grado de estudios</label>
              <select class="form-control" name="" id="estudios" formControlName="gradoMaxEstudios">
               <option *ngFor="let grado of catEscolaridad" value="{{grado.descripcion}}">{{grado.descripcion}}</option>
              </select>
@@ -79,11 +83,11 @@
           <hr>
           <div class="row">
             <div class="col">
-             <label for="fechaNac" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
+             <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
              <input type="date" class="form-control" id="fechaNac" formControlName="fechaNacimiento">
             </div>
             <div class="col">
-             <label for="ciudadNat" class="form-label">Cuidad natal <span class="text-danger">*</span></label>
+             <label for="ciudadNat" class="form-label">Cuidad natal</label>
              <input type="text" class="form-control" id="ciudadNat" formControlName="lugarNacimiento">
             </div>
           </div>
@@ -92,17 +96,17 @@
           <hr>
           <div class="row">
             <div class="col">
-             <label for="telefono1" class="form-label">Telefono principal</label>
+             <label for="telefono1" class="form-label">Telefono principal <span class="text-danger">*</span></label>
              <input type="tel" class="form-control" id="telefono1" formControlName="telefono">
             </div>
             <div class="col">
-             <label for="telefono2" class="form-label">Telefono secundario</label>
+             <label for="telefono2" class="form-label">Telefono secundario <span class="text-danger">*</span></label>
              <input type="tel" class="form-control" id="telefono2" formControlName="telefonoAlternativo">
             </div>
           </div>
           <div class="row">
            <div class="col">
-            <label for="correo" class="form-label">Correo electronico</label>
+            <label for="correo" class="form-label">Correo electronico <span class="text-danger">*</span></label>
             <input type="mail" class="form-control" id="correo" formControlName="correo">
            </div>
          </div>
@@ -111,21 +115,21 @@
           <hr>
          <div class="row">
            <div class="col">
-             <label for="calle" class="form-label">Calle <span class="text-danger">*</span></label>
+             <label for="calle" class="form-label">Calle</label>
              <input type="text" class="form-control" id="calle" formControlName="calle">
            </div>
            <div class="col">
-             <label for="calle1" class="form-label">Cruce 1</label>
+             <label for="calle1" class="form-label">Cruce 1 <span class="text-danger">*</span></label>
              <input type="text" class="form-control" id="calle1" formControlName="calleCruza1">
            </div>
            <div class="col">
-             <label for="calle2" class="form-label">Cruce 2</label>
+             <label for="calle2" class="form-label">Cruce 2 <span class="text-danger">*</span></label>
              <input type="text" class="form-control" id="calle2" formControlName="calleCruza2">
            </div>
          </div>
          <div class="row">
            <div class="col">
-             <label for="numInt" class="form-label">Num. Int.</label>
+             <label for="numInt" class="form-label">Num. Int. <span class="text-danger">*</span></label>
              <input type="number" class="form-control" id="numInt" formControlName="numInterior">
            </div>
            <div class="col">
@@ -133,17 +137,17 @@
              <input type="text" class="form-control" id="numExt" formControlName="numExterior">
            </div>
            <div class="col">
-             <label for="cp" class="form-label">Codigo postal <span class="text-danger">*</span></label>
+             <label for="cp" class="form-label">Codigo postal</label>
              <input type="number" class="form-control" id="cp" formControlName="cp">
            </div>
          </div>
          <div class="row">
            <div class="col">
-             <label for="estado" class="form-label">Estado <span class="text-danger">*</span></label>
+             <label for="estado" class="form-label">Estado</label>
              <input type="text" class="form-control" id="estado" formControlName="estado">
            </div>
            <div class="col">
-             <label for="muni" class="form-label">Municipio <span class="text-danger">*</span></label>
+             <label for="muni" class="form-label">Municipio</label>
              <input type="text" class="form-control" id="muni" formControlName="municipio">
            </div>
          </div>
@@ -152,7 +156,7 @@
           <hr>
          <div class="row">
            <div class="col col-3" hidden>
-             <label for="idUsr" class="form-label">ID Usuario <span class="text-danger">*</span></label>
+             <label for="idUsr" class="form-label">ID Usuario</label>
              <input type="number" name="" id="idUsr" class="form-control" formControlName="idUsuario">
            </div>
          </div>
