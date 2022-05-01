@@ -10,28 +10,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let candidato of candidatos" class="text-center">
-        <th scope="row">{{candidato.idCandidato}}</th>
-        <td>{{candidato.nombre}}</td>
-        <td>{{candidato.idUsuario}}</td>
-        <td>{{candidato.idCliente}}</td>
+      <tr *ngFor="let registro of registros" class="text-center">
+        <th scope="row">{{registro.idCandidato}}</th>
+        <td>{{registro.nombre}}</td>
+        <td>{{registro.idUsuario}}</td>
+        <td>{{registro.idCliente}}</td>
         <td>
-          <img class="btn" data-bs-toggle="modal" title="Ver detalles" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png" (click)="detRegistro(candidato.idCandidato)">
-          <img class="btn" data-bs-toggle="modal" title="Editar" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" (click)="editRegistro(candidato.idCandidato)">
-          <img class="btn" data-bs-toggle="modal" title="Eliminar" data-bs-target="#delModal" src="assets/imagenes/icons/delete.png" (click)="elimRegistro(candidato.idCandidato)">
+          <img class="btn" data-bs-toggle="modal" title="Ver detalles" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png" (click)="detRegistro(registro)">
+          <img class="btn" data-bs-toggle="modal" title="Editar" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" (click)="editRegistro(registro)">
+          <img class="btn" data-bs-toggle="modal" title="Eliminar" data-bs-target="#delModal" src="assets/imagenes/icons/delete.png" (click)="elimRegistro(registro)">
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- Modal Detalles-->
-
-  <div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Detalles CANDIDATO-->
+  <div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/candidatos' ">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Detalles de {{usuarioSeleccionado.nombre}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Informacion de Candidato: {{usuarioSeleccionado.nombre}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -138,49 +137,175 @@
   </div>
 </div>
 
-
-<!-- Modal Editar-->
-<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal Detalles CLIENTE-->
+<div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/clientes' ">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar registro {{usuarioSeleccionado.nombre}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Informacion de Cliente: {{usuarioSeleccionado.nombreEmpresa}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <form autocomplete="off" [formGroup]="miFormulario">
+        
+
+        <h4 class="">Informacion de contacto</h4>
+          <hr>
+        <div class="row">
+          <div class="col">
+            <b>Nombre:</b><span>{{usuarioSeleccionado.nombre}} {{usuarioSeleccionado.apellidoPaterno}} {{usuarioSeleccionado.apellidoMaterno}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono:</b><span>{{usuarioSeleccionado.telefono}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono 2:</b><span>{{usuarioSeleccionado.telefonoAlternativo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Correo electronico:</b><span>{{usuarioSeleccionado.correo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class="mt-4">Informacion de domicilio</h4>
+          <hr>
+          <div class="col">
+            <b>Direccion:</b><span> {{usuarioSeleccionado.calle}} {{usuarioSeleccionado.numInterior}} {{usuarioSeleccionado.numExterior}} {{usuarioSeleccionado.calleCruza1}} {{usuarioSeleccionado.calleCruza2}} {{usuarioSeleccionado.estado}} {{usuarioSeleccionado.municipio}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Estado:</b><span>{{usuarioSeleccionado.estatus}}</span>
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Detalles LABORATORIO-->
+<div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/laboratorios' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informacion de Laboratorio: {{usuarioSeleccionado.nombreEmpresa}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="">Informacion de Empresa</h4>
+          <hr>
+          <div class="row">
+            <div class="col">
+              <b>Nombre de empresa:</b><span>{{usuarioSeleccionado.nombreEmpresa}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <b>Cedula:</b><span>{{usuarioSeleccionado.cedula}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <b>Firma:</b><span><img src="{{usuarioSeleccionado.firma}}" alt="" style="height: 30vh; width: 50vh;"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <b>Encabezado:</b><span>{{usuarioSeleccionado.encabezado}}</span>
+            </div>
+            <div class="col">
+              <b>Pie de pagina:</b><span>{{usuarioSeleccionado.pieDePagina}}</span>
+            </div>
+          </div>
+        <h4 class="">Informacion de contacto</h4>
+          <hr>
+        <div class="row">
+          <div class="col">
+            <b>Nombre:</b><span>{{usuarioSeleccionado.nombre}} {{usuarioSeleccionado.apellidoPaterno}} {{usuarioSeleccionado.apellidoMaterno}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono:</b><span>{{usuarioSeleccionado.telefono}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono 2:</b><span>{{usuarioSeleccionado.telefonoAlternativo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Correo electronico:</b><span>{{usuarioSeleccionado.correo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class="mt-4">Informacion de domicilio</h4>
+          <hr>
+          <div class="col">
+            <b>Direccion:</b><span> {{usuarioSeleccionado.calle}} {{usuarioSeleccionado.numInterior}} {{usuarioSeleccionado.numExterior}} {{usuarioSeleccionado.calleCruza1}} {{usuarioSeleccionado.calleCruza2}} {{usuarioSeleccionado.estado}} {{usuarioSeleccionado.municipio}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Estado:</b><span>{{usuarioSeleccionado.estatus}}</span>
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar CANDIDATO-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/candidatos' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Candidato: {{usuarioSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form autocomplete="off">
         <h4>Informacion personal</h4>
         <hr>
         <div class="row">
          <div class="col">
            <label for="nombre" class="form-label">Nombre(s)</label>
-           <input type="text" class="form-control" id="nombre" formControlName="nombre">
+           <input type="text" class="form-control" id="nombre" value="{{usuarioSeleccionado.nombre}}">
          </div>
          <div class="col">
-           <label for="apellido1" class="form-label">Apellido materno</label>
-           <input type="text" class="form-control" id="apellido1" formControlName="apellidoPaterno">
+           <label for="apellido1" class="form-label">Apellido paterno</label>
+           <input type="text" class="form-control" id="apellido1" value="{{usuarioSeleccionado.apellidoPaterno}}">
          </div>
          <div class="col">
-           <label for="apellido2" class="form-label">Apellido paterno</label>
-           <input type="text" class="form-control" id="apllido2" formControlName="apellidoMaterno">
+           <label for="apellido2" class="form-label">Apellido materno</label>
+           <input type="text" class="form-control" id="apllido2" value="{{usuarioSeleccionado.apellidoMaterno}}">
          </div>
         </div>
 
         <div class="row">
           <div class="col">
            <label for="genero" class="form-label">Genero</label>
-           <select class="form-control" name="" id="genero" formControlName="genero">
-             <option value="M">M</option>
-             <option value="H">H</option>
+           <select class="form-control" name="" id="genero">
+             <option *ngFor="let genero of catGenero" value="{{genero.descripcion}}">{{genero.descripcion}}</option>
            </select>
           </div>
           <div class="col">
            <label for="eCivil" class="form-label">Estado civil</label>
-           <select class="form-control" name="" id="eCivil" formControlName="estadoCivil">
-             <option value="Soltero">Soltero/a</option>
-             <option value="Casado">Casado/a</option>
-             <option value="Divorciado">DIvorciado/a</option>
-             <option value="Viudo">Viudo/a</option>
+           <select class="form-control" name="" id="eCivil">
+            <option *ngFor="let estadoCivil of catEstadoCivil" value="{{estadoCivil.descripcion}}">{{estadoCivil.descripcion}}</option>
            </select>
           </div>
         </div>
@@ -188,12 +313,8 @@
         <div class="row">
          <div class="col">
            <label for="estudios" class="form-label">Maximo grado de estudios</label>
-           <select class="form-control" name="" id="estudios" formControlName="gradoMaxEstudios">
-             <option value="Primaria">Primaria</option>
-             <option value="Secundaria">Secundaria</option>
-             <option value="Preparatoria">Preparatoria</option>
-             <option value="Universidad">Universidad</option>
-             <option value="Posgrado">Posgrado</option>
+           <select class="form-control" name="" id="estudios">
+            <option *ngFor="let grado of catEscolaridad" value="{{grado.descripcion}}">{{grado.descripcion}}</option>
            </select>
          </div>
         </div>
@@ -203,11 +324,11 @@
         <div class="row">
           <div class="col">
            <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
-           <input type="date" class="form-control" id="fechaNac" formControlName="fechaNacimiento">
+           <input type="date" class="form-control" id="fechaNac" value="{{usuarioSeleccionado.fechaNacimiento}}">
           </div>
           <div class="col">
            <label for="ciudadNat" class="form-label">Cuidad natal</label>
-           <input type="text" class="form-control" id="ciudadNat" formControlName="lugarNacimiento">
+           <input type="text" class="form-control" id="ciudadNat" value="{{usuarioSeleccionado.lugarNacimiento}}">
           </div>
         </div>
 
@@ -216,17 +337,17 @@
         <div class="row">
           <div class="col">
            <label for="telefono1" class="form-label">Telefono principal</label>
-           <input type="tel" class="form-control" id="telefono1" formControlName="telefono">
+           <input type="tel" class="form-control" id="telefono1" value="{{usuarioSeleccionado.telefono}}">
           </div>
           <div class="col">
            <label for="telefono2" class="form-label">Telefono secundario</label>
-           <input type="tel" class="form-control" id="telefono2" formControlName="telefonoAlternativo">
+           <input type="tel" class="form-control" id="telefono2" value="{{usuarioSeleccionado.telefonoAlternativo}}">
           </div>
         </div>
         <div class="row">
          <div class="col">
           <label for="correo" class="form-label">Correo electronico</label>
-          <input type="mail" class="form-control" id="correo" formControlName="correo">
+          <input type="mail" class="form-control" id="correo" value="{{usuarioSeleccionado.correo}}">
          </div>
        </div>
        
@@ -235,39 +356,39 @@
        <div class="row">
          <div class="col">
            <label for="calle" class="form-label">Calle</label>
-           <input type="text" class="form-control" id="calle" formControlName="calle">
+           <input type="text" class="form-control" id="calle" value="{{usuarioSeleccionado.calle}}">
          </div>
          <div class="col">
            <label for="calle1" class="form-label">Cruce 1</label>
-           <input type="text" class="form-control" id="calle1" formControlName="calleCruza1">
+           <input type="text" class="form-control" id="calle1" value="{{usuarioSeleccionado.calleCruza1}}">
          </div>
          <div class="col">
            <label for="calle2" class="form-label">Cruce 2</label>
-           <input type="text" class="form-control" id="calle2" formControlName="calleCruza2">
+           <input type="text" class="form-control" id="calle2" value="{{usuarioSeleccionado.calleCruza2}}">
          </div>
        </div>
        <div class="row">
          <div class="col">
            <label for="numInt" class="form-label">Num. Int.</label>
-           <input type="number" class="form-control" id="numInt" formControlName="numInterior">
+           <input type="number" class="form-control" id="numInt" value="{{usuarioSeleccionado.numInterior}}">
          </div>
          <div class="col">
            <label for="numExt" class="form-label">Num. Ext.</label>
-           <input type="text" class="form-control" id="numExt" formControlName="numExterior">
+           <input type="text" class="form-control" id="numExt" value="{{usuarioSeleccionado.numExterior}}">
          </div>
          <div class="col">
            <label for="cp" class="form-label">Codigo postal</label>
-           <input type="number" class="form-control" id="cp" formControlName="cp">
+           <input type="number" class="form-control" id="cp" value="{{usuarioSeleccionado.cp}}">
          </div>
        </div>
        <div class="row">
          <div class="col">
            <label for="estado" class="form-label">Estado</label>
-           <input type="text" class="form-control" id="estado" formControlName="estado">
+           <input type="text" class="form-control" id="estado" value="{{usuarioSeleccionado.estado}}">
          </div>
          <div class="col">
            <label for="muni" class="form-label">Municipio</label>
-           <input type="text" class="form-control" id="muni" formControlName="municipio">
+           <input type="text" class="form-control" id="muni" value="{{usuarioSeleccionado.municipio}}">
          </div>
        </div>
 
@@ -276,21 +397,21 @@
        <div class="row">
          <div class="col">
            <label for="estatus" class="form-label">Estatus</label>
-           <select name="" id="estatus" class="form-control" formControlName="estatus">
+           <select name="" id="estatus" class="form-control">
              <option value="1">Activo</option>
              <option value="0">Inactivo</option>
            </select>
          </div>
          <div class="col">
            <label for="histAc" class="form-label">Historial academico</label>
-           <select name="" id="estatus" class="form-control" formControlName="tieneHistorialAcademico">
+           <select name="" id="estatus" class="form-control">
              <option value="1">Si</option>
              <option value="0">No</option>
            </select>
          </div>
          <div class="col">
            <label for="antLab" class="form-label">Ant. Laborales</label>
-           <select name="" id="antLab" class="form-control" formControlName="tieneAntecedentesLaborales">
+           <select name="" id="antLab" class="form-control">
              <option value="1">Si</option>
              <option value="0">No</option>
            </select>
@@ -299,21 +420,21 @@
        <div class="row">
          <div class="col">
            <label for="antSoc" class="form-label">ID Ante. Sociales</label>
-           <input type="number" name="" id="antSoc" class="form-control" formControlName="idAntecedentesSociales">
+           <input type="number" name="" id="antSoc" class="form-control" value="{{usuarioSeleccionado.idAntecedentesSociales}}">
          </div>
          <div class="col">
            <label for="refPer" class="form-label">ID Ref. Personales</label>
-           <input type="number" name="" id="refPer" class="form-control" formControlName="idReferenciasPersonales">
+           <input type="number" name="" id="refPer" class="form-control" value="{{usuarioSeleccionado.idReferenciasPersonales}}">
          </div>
        </div>
        <div class="row">
          <div class="col">
            <label for="invLeg" class="form-label">ID Inv. Legal</label>
-           <input type="number" name="" id="invLeg" class="form-control" formControlName="idInvestigacionLegal">
+           <input type="number" name="" id="invLeg" class="form-control" value="{{usuarioSeleccionado.idInvestigacionLegal}}">
          </div>
          <div class="col">
            <label for="traNoMen" class="form-label">Trabajos no mencionados</label>
-           <select name="" id="traNoMen" class="form-control" formControlName="tieneTrabajosNoMencionados">
+           <select name="" id="traNoMen" class="form-control">
              <option value="1">Si</option>
              <option value="0">No</option>
            </select>
@@ -329,12 +450,297 @@
   </div>
 </div>
 
-<!-- Modal Eliminar-->
-<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Modal Editar CLIENTE-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/clientes' ">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Eliminar {{usuarioSeleccionado.nombre}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar Cliente: {{usuarioSeleccionado.nombreEmpresa}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form autocomplete="off">
+        <h4>Informacion de contacto</h4>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <label for="nombre" class="form-label">NombreEmpresa</label>
+            <input type="text" class="form-control" id="nombre" value="{{usuarioSeleccionado.nombreEmpresa}}">
+          </div>
+        </div>
+        <div class="row">
+         <div class="col">
+           <label for="nombre" class="form-label">Nombre(s)</label>
+           <input type="text" class="form-control" id="nombre" value="{{usuarioSeleccionado.nombreEmpresa}}">
+         </div>
+         <div class="col">
+           <label for="apellido1" class="form-label">Apellido paterno</label>
+           <input type="text" class="form-control" id="apellido1" value="{{usuarioSeleccionado.apellidoPaterno}}">
+         </div>
+         <div class="col">
+           <label for="apellido2" class="form-label">Apellido materno</label>
+           <input type="text" class="form-control" id="apllido2" value="{{usuarioSeleccionado.apellidoMaterno}}">
+         </div>
+        </div>
+        <div class="row">
+          <div class="col">
+           <label for="telefono1" class="form-label">Telefono principal</label>
+           <input type="tel" class="form-control" id="telefono1" value="{{usuarioSeleccionado.telefono}}">
+          </div>
+          <div class="col">
+           <label for="telefono2" class="form-label">Telefono secundario</label>
+           <input type="tel" class="form-control" id="telefono2" value="{{usuarioSeleccionado.telefonoAlternativo}}">
+          </div>
+        </div>
+        <div class="row">
+         <div class="col">
+          <label for="correo" class="form-label">Correo electronico</label>
+          <input type="mail" class="form-control" id="correo" value="{{usuarioSeleccionado.correo}}">
+         </div>
+       </div>
+       
+       <h4 class="mt-3">Informacion de Domicilio</h4>
+        <hr>
+       <div class="row">
+         <div class="col">
+           <label for="calle" class="form-label">Calle</label>
+           <input type="text" class="form-control" id="calle" value="{{usuarioSeleccionado.calle}}">
+         </div>
+         <div class="col">
+           <label for="calle1" class="form-label">Cruce 1</label>
+           <input type="text" class="form-control" id="calle1" value="{{usuarioSeleccionado.calleCruza1}}">
+         </div>
+         <div class="col">
+           <label for="calle2" class="form-label">Cruce 2</label>
+           <input type="text" class="form-control" id="calle2" value="{{usuarioSeleccionado.calleCruza2}}">
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="numInt" class="form-label">Num. Int.</label>
+           <input type="number" class="form-control" id="numInt" value="{{usuarioSeleccionado.numInterior}}">
+         </div>
+         <div class="col">
+           <label for="numExt" class="form-label">Num. Ext.</label>
+           <input type="text" class="form-control" id="numExt" value="{{usuarioSeleccionado.numExterior}}">
+         </div>
+         <div class="col">
+           <label for="cp" class="form-label">Codigo postal</label>
+           <input type="number" class="form-control" id="cp" value="{{usuarioSeleccionado.cp}}">
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="estado" class="form-label">Estado</label>
+           <input type="text" class="form-control" id="estado" value="{{usuarioSeleccionado.estado}}">
+         </div>
+         <div class="col">
+           <label for="muni" class="form-label">Municipio</label>
+           <input type="text" class="form-control" id="muni" value="{{usuarioSeleccionado.municipio}}">
+         </div>
+       </div>
+
+       <h4 class="mt-3">Informacion relacionada</h4>
+        <hr>
+       <div class="row">
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="idUsr" class="form-label">ID usuario</label>
+           <input type="number" name="" id="idUsr" class="form-control" value="{{usuarioSeleccionado.idUsuario}}">
+         </div>
+         <div class="col">
+          <label for="idCli" class="form-label">ID cliente</label>
+          <input type="number" name="" id="idCli" class="form-control" value="{{usuarioSeleccionado.idCliente}}">
+        </div>
+        <div class="col">
+          <label for="idCan" class="form-label">ID candidato</label>
+          <input type="number" name="" id="idCan" class="form-control" value="{{usuarioSeleccionado.idCandidato}}">
+        </div>
+        <div class="col">
+          <label for="idLab" class="form-label">ID laboratorio</label>
+          <input type="number" name="" id="idLab" class="form-control" value="{{usuarioSeleccionado.idLaboratorio}}">
+        </div>
+        <div class="col">
+          <label for="idUsrSis" class="form-label">ID usuarioSistema</label>
+          <input type="number" name="" id="idUsrSis" class="form-control" value="{{usuarioSeleccionado.idUsuarioSistema}}">
+        </div>
+        <div class="col">
+          <label for="idPaq" class="form-label">ID paquete</label>
+          <input type="number" name="" id="idPaq" class="form-control" value="{{usuarioSeleccionado.idPaquete}}">
+        </div>
+       </div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Editar LABORATORIO-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/laboratorios' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Laboratorio: {{usuarioSeleccionado.nombreEmpresa}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form autocomplete="off">
+        <h4>Informacion de empresa</h4>
+        <hr>
+        <div class="row">
+          <div class="col">
+           <label for="nomEmp" class="form-label">Nombre de empresa</label>
+           <input type="text" class="form-control" id="nomEmp" value="{{usuarioSeleccionado.nombreEmpresa}}">
+          </div>
+          <div class="col">
+           <label for="cedula" class="form-label">Cedula</label>
+           <input type="text" class="form-control" id="cedula" value="{{usuarioSeleccionado.cedula}}">
+          </div>
+          <div class="row mt-3">
+            <img src="{{usuarioSeleccionado.firma}}" alt="" style="height: 30vh; width: 50vh;">
+           </div>
+          <div class="row">
+            <div class="col">
+              <label for="firma" class="form-label">Firma</label>
+              <input type="file" class="form-control" id="firma" value="{{usuarioSeleccionado.firma}}">
+             </div>
+          </div>
+        </div>
+        <h4 class="mt-3">Informacion de contacto</h4>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <label for="nombre" class="form-label">Nombre(s)</label>
+            <input type="text" class="form-control" id="nombre" value="{{usuarioSeleccionado.nombre}}">
+          </div>
+          <div class="col">
+            <label for="apellido1" class="form-label">Apellido paterno</label>
+            <input type="text" class="form-control" id="apellido1" value="{{usuarioSeleccionado.apellidoPaterno}}">
+          </div>
+          <div class="col">
+            <label for="apellido2" class="form-label">Apellido materno</label>
+            <input type="text" class="form-control" id="apllido2" value="{{usuarioSeleccionado.apellidoMaterno}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+           <label for="telefono1" class="form-label">Telefono principal</label>
+           <input type="tel" class="form-control" id="telefono1" value="{{usuarioSeleccionado.telefono}}">
+          </div>
+          <div class="col">
+           <label for="telefono2" class="form-label">Telefono secundario</label>
+           <input type="tel" class="form-control" id="telefono2" value="{{usuarioSeleccionado.telefonoAlternativo}}">
+          </div>
+        </div>
+        <div class="row">
+         <div class="col">
+          <label for="correo" class="form-label">Correo electronico</label>
+          <input type="mail" class="form-control" id="correo" value="{{usuarioSeleccionado.correo}}">
+         </div>
+       </div>
+       
+       <h4 class="mt-3">Informacion de Domicilio</h4>
+        <hr>
+       <div class="row">
+         <div class="col">
+           <label for="calle" class="form-label">Calle</label>
+           <input type="text" class="form-control" id="calle" value="{{usuarioSeleccionado.calle}}">
+         </div>
+         <div class="col">
+           <label for="calle1" class="form-label">Cruce 1</label>
+           <input type="text" class="form-control" id="calle1" value="{{usuarioSeleccionado.calleCruza1}}">
+         </div>
+         <div class="col">
+           <label for="calle2" class="form-label">Cruce 2</label>
+           <input type="text" class="form-control" id="calle2" value="{{usuarioSeleccionado.calleCruza2}}">
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="numInt" class="form-label">Num. Int.</label>
+           <input type="number" class="form-control" id="numInt" value="{{usuarioSeleccionado.numInterior}}">
+         </div>
+         <div class="col">
+           <label for="numExt" class="form-label">Num. Ext.</label>
+           <input type="text" class="form-control" id="numExt" value="{{usuarioSeleccionado.numExterior}}">
+         </div>
+         <div class="col">
+           <label for="cp" class="form-label">Codigo postal</label>
+           <input type="number" class="form-control" id="cp" value="{{usuarioSeleccionado.cp}}">
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="estado" class="form-label">Estado</label>
+           <input type="text" class="form-control" id="estado" value="{{usuarioSeleccionado.estado}}">
+         </div>
+         <div class="col">
+           <label for="muni" class="form-label">Municipio</label>
+           <input type="text" class="form-control" id="muni" value="{{usuarioSeleccionado.municipio}}">
+         </div>
+       </div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar CANDIDATO-->
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/candidatos' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Candidato: {{usuarioSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se eliminara este registro de forma permanente. Desea continuar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Eliminar CLIENTE-->
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/clientes' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Cliente: {{usuarioSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se eliminara este registro de forma permanente. Desea continuar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar LABORATORIO-->
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/laboratorios' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Laboratorio: {{usuarioSeleccionado.nombreEmpresa}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

@@ -10,6 +10,7 @@ import { PublicModule } from 'src/app/public/public.module';
 import { DashboardComponent } from './vistasUser/dashboard/dashboard.component';
 import { UsuariosComponent } from './vistasUser/usuarios/usuarios.component';
 import { LaboratoriosComponent } from './vistasUser/laboratorios/laboratorios.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -32,7 +33,8 @@ import { LaboratoriosComponent } from './vistasUser/laboratorios/laboratorios.co
   imports: [
     CommonModule,
     UserRoutesModule,
-    PublicModule
+    PublicModule,
+    ReactiveFormsModule
   ],
   exports:[]
 })

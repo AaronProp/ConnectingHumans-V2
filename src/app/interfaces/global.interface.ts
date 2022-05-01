@@ -111,3 +111,32 @@ export interface Laboratorio{
         cp: string,
         estatus: number
 }
+
+export interface UsuarioSistema{
+
+}
+
+
+// Cats
+
+export interface CatGenero{
+    idCatGenero: number,
+    descripcion: string
+}
+
+export interface CatEstadoCivil{
+    idCatEstadoCivil: number,
+    descripcion: string
+}
+
+export interface CatEscolaridad{
+    idCatEscolaridad: number,
+    descripcion: string
+}
+
+export interface CatPaquete{
+    idPaquete: number,
+    nombre: string,
+    descripcion: string,
+    precio: number
+}

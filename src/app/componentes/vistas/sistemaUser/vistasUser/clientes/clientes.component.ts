@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CentralDatosService } from 'src/app/central-datos.service';
+import { CatPaquete } from 'src/app/interfaces/global.interface'
 
 @Component({
   selector: 'app-clientes',
@@ -12,13 +15,60 @@ export class ClientesComponent implements OnInit {
   verAddCliente = true;
   verAddUsuario = true;
   verAddLab = true;
-  constructor() {
+  constructor( private servicio:CentralDatosService, private fb:FormBuilder) {
     if(this.urlAct == "http://localhost:4200/usuario/clientes"){
       this.verAddCliente = false
     }
   }
 
+  miFormulario:FormGroup = this.fb.group({
+    idUsuario: [],
+    idCliente: [],
+    idCandidato: [],
+    idLaboratorio: [],
+    idUsuarioSistema:[],
+    idPaquete: [,Validators.required],
+    nombreEmpresa: [,Validators.required],
+    nombre: [,Validators.required],
+    apellidoPaterno: [,Validators.required],
+    apellidoMaterno: [],
+    telefono: [,Validators.required],
+    telefonoAlternativo: [],
+    correo: [],
+    calle: [],
+    numInterior: [],
+    numExterior: [,Validators.required],
+    calleCruza1: [],
+    calleCruza2: [],
+    estado: [,Validators.required],
+    municipio: [,Validators.required],
+    cp: [,Validators.required]
+})
+
+//Se recuperan los Cats para usarlos en los formularios
+catPaquetes: CatPaquete[] = [];
+
   ngOnInit(): void {
+
+    this.servicio.getCatPaquetes()
+          .subscribe(resp => {
+            this.catPaquetes = resp;
+        }
+      )
+  }
+
+  formularioValido(){
+    return this.miFormulario.valid && this.miFormulario.touched
+  }
+
+  crearCliente(){
+    if(this.miFormulario.invalid){
+      console.log('Faltan campos por llenar')
+    }else{
+      this.servicio.postCandidato(this.miFormulario.value)
+      console.log(this.miFormulario.value)
+      this.miFormulario.reset();
+    }
   }
 
 }
