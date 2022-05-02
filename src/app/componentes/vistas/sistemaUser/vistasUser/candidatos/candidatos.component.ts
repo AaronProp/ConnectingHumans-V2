@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
-import { CatGenero, CatEstadoCivil, CatEscolaridad } from 'src/app/interfaces/global.interface'
+import { CatGenero, CatEstadoCivil, CatEscolaridad, Cliente } from 'src/app/interfaces/global.interface'
 
 @Component({
   selector: 'app-candidatos',
@@ -10,12 +10,13 @@ import { CatGenero, CatEstadoCivil, CatEscolaridad } from 'src/app/interfaces/gl
 })
 export class CandidatosComponent implements OnInit {
 
+
   miFormulario:FormGroup = this.fb.group({
-        idUsuario: ["",],
-        idCliente: ["17",Validators.required],
-        idCandidato: ["",],
+        idUsuario: [],
+        idCliente: [,Validators.required],
+        idCandidato: [],
         idLaboratorio: ["null",Validators.required],
-        idUsuarioSistema:["1",Validators.required],
+        idUsuarioSistema:[3,Validators.required],
         fechaNacimiento: [,Validators.required],
         lugarNacimiento: [,Validators.required],
         genero: [,Validators.required],
@@ -42,10 +43,16 @@ export class CandidatosComponent implements OnInit {
   catGenero: CatGenero[] = [];
   catEstadoCivil:CatEstadoCivil[] = [];
   catEscolaridad:CatEscolaridad[] = [];
+  clientes:Cliente[]=[]
  
   constructor(private servicio:CentralDatosService, private fb:FormBuilder) {}
 
   ngOnInit(): void {
+
+    this.servicio.getClientes()
+    .subscribe( res => {
+      this.clientes = res;
+    })
 
     this.servicio.getCatGenero()
           .subscribe(resp => {

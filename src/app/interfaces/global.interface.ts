@@ -113,7 +113,29 @@ export interface Laboratorio{
 }
 
 export interface UsuarioSistema{
-
+        idUsuario: number,
+        idCliente: number
+        idCandidato: number,
+        idLaboratorio: number,
+        idUsuarioSistema: number,
+        idPermiso: number,
+        nombre_permiso: string,
+        descripcion: string,
+        nombre: string,
+        apellidoPaterno: string,
+        apellidoMaterno: string,
+        telefono: string,
+        telefonoAlternativo: string,
+        correo: string,
+        calle: string,
+        numInterior: number,
+        numExterior: number,
+        calleCruza1: string,
+        calleCruza2: string,
+        estado: string,
+        municipio: string,
+        cp: number,
+        estatus: number
 }
 
 
@@ -139,4 +161,10 @@ export interface CatPaquete{
     nombre: string,
     descripcion: string,
     precio: number
+}
+
+export interface catPermisos{
+    idCatPermisos: number,
+    nombre: string,
+    descripcion: string
 }

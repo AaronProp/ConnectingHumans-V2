@@ -34,8 +34,10 @@
           <hr>
           <div class="row">
             <div class="col">
-              <label for="idCliente" class="form-label">ID Cliente</label>
-              <input type="text" class="form-control" id="idCliente" formControlName="idCliente">
+              <label for="idCliente" class="form-label">Cliente asociado</label>
+              <select class="form-control" id="idCliente" formControlName="idCliente">
+                <option *ngFor="let cliente of clientes" value="{{cliente.idCliente}}">{{cliente.nombre}}</option>
+              </select>
             </div>
            <div class="col">
              <label for="nombre" class="form-label">Nombre(s)</label>
@@ -178,24 +180,8 @@
            <div class="col" hidden>
             <label for="isUsrSis" class="form-label">ID Usuario Sistema</label>
             <input type="number" name="" id="isUsrSis" class="form-control" formControlName="idUsuarioSistema">
-          </div>
-           
+          </div>  
          </div>
-
-
-         <div class="row">
-           <div class="col">
-             <span>Valid</span>
-             <pre>{{miFormulario.valid}}</pre>
-             <span>Pristine</span>
-             <pre>{{miFormulario.pristine}}</pre>
-             <span>Value</span>
-             <pre>{{miFormulario.value | json}}</pre>
-             <span>Touched</span>
-             <pre>{{miFormulario.touched}}</pre>
-           </div>
-         </div>
-
          <div class="modal-footer mt-2">
           <span class="form-text text-danger" *ngIf="miFormulario.invalid">Llena todos los campos requeridos</span>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

@@ -4,17 +4,17 @@
       <tr class="text-center">
         <th scope="col">ID</th>
         <th scope="col">Nombre</th>
-        <th scope="col">ID Usuario a cargo</th>
-        <th scope="col">Cliente enlace</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Estatus</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let registro of registros | paginate: { itemsPerPage: 6, currentPage: page }" class="text-center">
-        <th scope="row">{{registro.idCandidato}}</th>
+        <th scope="row">{{registro.idUsuario}}</th>
         <td>{{registro.nombre}}</td>
-        <td>{{registro.idUsuario}}</td>
-        <td>{{registro.idCliente}}</td>
+        <td>{{registro.correo}}</td>
+        <td>{{registro.estatus}}</td>
         <td>
           <img class="btn" data-bs-toggle="modal" title="Ver detalles" data-bs-target="#detModal" src="assets/imagenes/icons/detail.png" (click)="detRegistro(registro)">
           <img class="btn" data-bs-toggle="modal" title="Editar" data-bs-target="#editModal" src="assets/imagenes/icons/editing.png" (click)="editRegistro(registro)">
@@ -100,7 +100,7 @@
         </div>
         <div class="row">
           <div class="col">
-            <b>Estado:</b><span>{{usuarioSeleccionado.estatus}}</span>
+            <b>Estatus:</b><span>{{usuarioSeleccionado.estatus}}</span>
           </div>
         </div>
         <div class="row">
@@ -180,7 +180,74 @@
         </div>
         <div class="row">
           <div class="col">
-            <b>Estado:</b><span>{{usuarioSeleccionado.estatus}}</span>
+            <b>Estatus:</b><span>{{usuarioSeleccionado.estatus}}</span>
+          </div>
+        </div>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Detalles USUARIO-->
+<div class="modal fade" id="detModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/usuarios' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Informacion de Usuario: {{usuarioSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <h4 class="">Informacion de privilegios</h4>
+          <hr>
+          <div class="row">
+            <div class="col">
+              <b>ID permiso:</b><span>{{usuarioSeleccionado.idPermiso}}</span>
+            </div>
+            <div class="col">
+              <b>Tipo de permiso:</b><span>{{usuarioSeleccionado.nombre_permiso}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <b>Alcance de acceso:</b><span>{{usuarioSeleccionado.descripcion}}</span>
+            </div>
+          </div>
+        <h4 class="">Informacion de contacto</h4>
+          <hr>
+        <div class="row">
+          <div class="col">
+            <b>Nombre:</b><span>{{usuarioSeleccionado.nombre}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono:</b><span>{{usuarioSeleccionado.telefono}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Telefono 2:</b><span>{{usuarioSeleccionado.telefonoAlternativo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Correo electronico:</b><span>{{usuarioSeleccionado.correo}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class="mt-4">Informacion de domicilio</h4>
+          <hr>
+          <div class="col">
+            <b>Direccion:</b><span> {{usuarioSeleccionado.calle}} {{usuarioSeleccionado.numInterior}} {{usuarioSeleccionado.numExterior}} {{usuarioSeleccionado.calleCruza1}} {{usuarioSeleccionado.calleCruza2}} {{usuarioSeleccionado.estado}} {{usuarioSeleccionado.municipio}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <b>Estatus:</b><span>{{usuarioSeleccionado.estatus}}</span>
           </div>
         </div>  
       </div>
@@ -652,6 +719,106 @@
   </div>
 </div>
 
+<!-- Modal Editar USUARIO-->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/usuarios' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Usuario: {{usuarioSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form autocomplete="off">
+        <h4 class="mt-3">Informacion general</h4>
+        <hr>
+        <div class="row">
+          <div class="col">
+            <label for="permiso" class="form-label">Permiso</label>
+            <input type="number" class="form-control" id="permiso" value="{{usuarioSeleccionado.idPermiso}}">
+            <small class="mb-1 text-primary">Valor del 1 al 5</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="nombre" class="form-label">Nombre(s)</label>
+            <input type="text" class="form-control" id="nombre" value="{{usuarioSeleccionado.nombre}}">
+          </div>
+          <div class="col">
+            <label for="apellido1" class="form-label">Apellido paterno</label>
+            <input type="text" class="form-control" id="apellido1" value="{{usuarioSeleccionado.apellidoPaterno}}">
+          </div>
+          <div class="col">
+            <label for="apellido2" class="form-label">Apellido materno</label>
+            <input type="text" class="form-control" id="apllido2" value="{{usuarioSeleccionado.apellidoMaterno}}">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+           <label for="telefono1" class="form-label">Telefono principal</label>
+           <input type="tel" class="form-control" id="telefono1" value="{{usuarioSeleccionado.telefono}}">
+          </div>
+          <div class="col">
+           <label for="telefono2" class="form-label">Telefono secundario</label>
+           <input type="tel" class="form-control" id="telefono2" value="{{usuarioSeleccionado.telefonoAlternativo}}">
+          </div>
+        </div>
+        <div class="row">
+         <div class="col">
+          <label for="correo" class="form-label">Correo electronico</label>
+          <input type="mail" class="form-control" id="correo" value="{{usuarioSeleccionado.correo}}">
+         </div>
+       </div>
+       
+       <h4 class="mt-3">Informacion de Domicilio</h4>
+        <hr>
+       <div class="row">
+         <div class="col">
+           <label for="calle" class="form-label">Calle</label>
+           <input type="text" class="form-control" id="calle" value="{{usuarioSeleccionado.calle}}">
+         </div>
+         <div class="col">
+           <label for="calle1" class="form-label">Cruce 1</label>
+           <input type="text" class="form-control" id="calle1" value="{{usuarioSeleccionado.calleCruza1}}">
+         </div>
+         <div class="col">
+           <label for="calle2" class="form-label">Cruce 2</label>
+           <input type="text" class="form-control" id="calle2" value="{{usuarioSeleccionado.calleCruza2}}">
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="numInt" class="form-label">Num. Int.</label>
+           <input type="number" class="form-control" id="numInt" value="{{usuarioSeleccionado.numInterior}}">
+         </div>
+         <div class="col">
+           <label for="numExt" class="form-label">Num. Ext.</label>
+           <input type="text" class="form-control" id="numExt" value="{{usuarioSeleccionado.numExterior}}">
+         </div>
+         <div class="col">
+           <label for="cp" class="form-label">Codigo postal</label>
+           <input type="number" class="form-control" id="cp" value="{{usuarioSeleccionado.cp}}">
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <label for="estado" class="form-label">Estado</label>
+           <input type="text" class="form-control" id="estado" value="{{usuarioSeleccionado.estado}}">
+         </div>
+         <div class="col">
+           <label for="muni" class="form-label">Municipio</label>
+           <input type="text" class="form-control" id="muni" value="{{usuarioSeleccionado.municipio}}">
+         </div>
+       </div>
+       </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal Eliminar CANDIDATO-->
 <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/candidatos' ">
   <div class="modal-dialog">
@@ -661,7 +828,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Se eliminara este registro: {{usuarioSeleccionado.idCandidato}} de forma permanente. Desea continuar?</p>
+        <p>Se eliminara este registro: {{usuarioSeleccionado.idUsuario}}. Desea continuar?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -681,11 +848,30 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Se eliminara este registro de forma permanente. Desea continuar?</p>
+        <p>Se eliminara este registro: {{usuarioSeleccionado.idUsuario}}. Desea continuar?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="elimRegistroModal()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Eliminar USUARIO-->
+<div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="urlAct=='http://localhost:4200/usuario/usuarios' ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario: {{usuarioSeleccionado.nombre}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Se eliminara este registro: {{usuarioSeleccionado.idUsuario}}. Desea continuar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="elimRegistroModal()">Eliminar</button>
       </div>
     </div>
   </div>
@@ -700,11 +886,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Se eliminara este registro de forma permanente. Desea continuar?</p>
+        <p>Se eliminara este registro: {{usuarioSeleccionado.idUsuario}}. Desea continuar?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="elimRegistroModal()">Eliminar</button>
       </div>
     </div>
   </div>

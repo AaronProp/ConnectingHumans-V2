@@ -17,7 +17,6 @@ export class TablaInfoComponent implements OnInit {
   urlAct = String(location.href)
   registros!:any[];
   usuarioSeleccionado!: any;
-  candidatoSeleccionado!: any;
 
   catGenero: CatGenero[] = [];
   catEstadoCivil:CatEstadoCivil[] = [];
@@ -62,35 +61,6 @@ export class TablaInfoComponent implements OnInit {
       tieneAntecedentesLaborales: 0,
       idInvestigacionLegal: 0,
       tieneTrabajosNoMencionados: 0
-  };
-
-  this.candidatoSeleccionado = 
-    {
-      idUsuario: "44",
-      idCliente: "1",
-      idCandidato: "",
-      idLaboratorio: "null",
-      idUsuarioSistema: "1",
-      fechaNacimiento: '',
-      lugarNacimiento: '',
-      genero: '',
-      estadoCivil: '',
-      edad: 0,
-      gradoMaxEstudios: '',
-      nombre: '',
-      apellidoPaterno: '',
-      apellidoMaterno: '',
-      telefono: '',
-      telefonoAlternativo: '',
-      correo: '',
-      calle: '',
-      numInterior: 0,
-      numExterior: 0,
-      calleCruza1: '',
-      calleCruza2: '',
-      estado: '',
-      municipio: '',
-      cp: '',
   };
     }
 
@@ -148,11 +118,37 @@ export class TablaInfoComponent implements OnInit {
         estatus: 0
   };
    }
+
+   if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/usuarios`){
+    this.usuarioSeleccionado = 
+    {
+      idUsuario: 0,
+      idUsuarioSistema: 0,
+      idPermiso: 0,
+      nombre_permiso: '',
+      descripcion: '',
+      nombre: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
+      telefono: '',
+      telefonoAlternativo: '',
+      correo: '',
+      calle: '',
+      numInterior: 0,
+      numExterior: 0,
+      calleCruza1: '',
+      calleCruza2: '',
+      estado: '',
+      municipio: '',
+      cp: 0,
+      estatus: 0
+  };
+   }
  }
 
   
   ngOnInit() {
-
+//Inicializacion del arreglo para mostrar los datos en la tabla
     if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
         this.servicio.getCandidatos()
           .subscribe(resp => {
@@ -180,8 +176,8 @@ export class TablaInfoComponent implements OnInit {
       )
     }
 
+    //Observable del arreglo para actualizar los datos en la tabla
     this.suscription = this.servicio.refresh$.subscribe(()=>{
-      
       if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
         this.servicio.getCandidatos()
           .subscribe(resp => {
@@ -211,6 +207,7 @@ export class TablaInfoComponent implements OnInit {
         
     })
 
+    //Recuperacion de catalogos para formularios
     this.servicio.getCatGenero()
           .subscribe(resp => {
             this.catGenero = resp;
@@ -237,18 +234,17 @@ export class TablaInfoComponent implements OnInit {
    }
 
 
+   //EDITAR REGISTRO
    editRegistro(registro:any){
-     this.usuarioSeleccionado = registro;
-     if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
-      this.candidatoSeleccionado = registro;
-     }
+     this.usuarioSeleccionado= registro;
    }
 
    //EDITAR REGISTROS
    editarRegistro(){
      if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
-      console.log(`Candidato seleccionado ->`,this.candidatoSeleccionado)
-      this.servicio.editarCandidato(this.candidatoSeleccionado).subscribe(res => (console.log(res.msj)))
+      //console.log(`Candidato seleccionado ->`,this.usuarioSeleccionado)
+      //ARMAR EL OBJETO CON ESTE FORMATO EN EL SERVICIO, OMITIENDO LOS DATOS INNECESARIOS
+      this.servicio.editarCandidato(this.usuarioSeleccionado).subscribe(res => (console.log(res.msj)))
      }
   }
 
@@ -256,11 +252,23 @@ export class TablaInfoComponent implements OnInit {
   //ELIMINAR REGISTROS
   elimRegistro(registro:any){
     this.usuarioSeleccionado = registro;
+    console.log(this.usuarioSeleccionado)
   }
 
   elimRegistroModal(){
-      console.log(this.usuarioSeleccionado)
+    if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/candidatos`){
       this.servicio.eliminarCandidato(this.usuarioSeleccionado.idUsuario).subscribe( res => ( console.log(res.msj)) )
+     }
+     if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/clientes`){
+      this.servicio.eliminarCliente(this.usuarioSeleccionado.idUsuario).subscribe( res => ( console.log(res.msj)) )
+    }
+    if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/usuarios`){
+      this.servicio.eliminarUsuario(this.usuarioSeleccionado.idUsuario).subscribe( res => ( console.log(res.msj)) )
+    }
+    if(this.urlAct == `${this.servicio.urlBaseWeb}usuario/laboratorios`){
+      this.servicio.eliminarLab(this.usuarioSeleccionado.idUsuario).subscribe( res => ( console.log(res.msj)) )
+    }
+    
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
+import { Cliente, UsuarioSistema } from 'src/app/interfaces/global.interface';
 
 @Component({
   selector: 'app-laboratorios',
@@ -12,7 +13,7 @@ export class LaboratoriosComponent implements OnInit {
   miFormulario:FormGroup = this.fb.group({
         idCliente: ["17",Validators.required],
         idCandidato: ["5",Validators.required],
-        idUsuarioSistema:[JSON.stringify(localStorage.getItem('usr_sis')),Validators.required],
+        idUsuarioSistema:[1,Validators.required],
         idUsuario: [,Validators.required],
         idLaboratorio: [,Validators.required],
         nombreEmpresa: [,Validators.required],
@@ -36,11 +37,23 @@ export class LaboratoriosComponent implements OnInit {
         cp: [,Validators.required]
 })
 
-
+clientes:Cliente[]=[]
+usuarios:UsuarioSistema[]=[]
   constructor(private servicio:CentralDatosService, private fb:FormBuilder) {   
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+    this.servicio.getClientes()
+    .subscribe( res => {
+      this.clientes = res;
+    })
+
+    this.servicio.getUsuarios()
+    .subscribe( res => {
+      this.usuarios = res;
+    })
+  }
 
   formularioValido(){
     return this.miFormulario.valid && this.miFormulario.touched

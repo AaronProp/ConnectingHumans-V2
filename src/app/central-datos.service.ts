@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthResp,Sesion,Candidato,CatGenero, CatEstadoCivil, CatEscolaridad, Cliente, Laboratorio, UsuarioSistema, CatPaquete } from '../app/interfaces/global.interface'
+import { AuthResp,Sesion,Candidato,CatGenero, CatEstadoCivil, CatEscolaridad, Cliente, Laboratorio, UsuarioSistema, CatPaquete, catPermisos } from '../app/interfaces/global.interface'
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -11,9 +11,10 @@ export class CentralDatosService {
 
   private _refresh$ = new Subject<void>();
 
-  headers = new HttpHeaders({
-    'content-type': 'application/json',
-    'Access-Control-Allow-Origin':`http://localhost:4200/usuario/candidatos`
+  httpHeaders = new HttpHeaders({
+    //'content-type': 'application/json',
+    'Authorization': 'Bearer key',
+    'token-api-ch': `${localStorage.getItem('token')}`
   })
 
   constructor(private http: HttpClient) { }
@@ -42,6 +43,9 @@ export class CentralDatosService {
   getCatPaquetes(){
     return this.http.get<CatPaquete[]>(`${this.urlBase}paquete/_R`)
   }
+  getCatPermisos(){
+    return this.http.get<catPermisos[]>(`${this.urlBase}cat_permisos/_R`)
+  }
   
   //Getters de tipos de usuarios
   getCandidatos(){
@@ -57,7 +61,7 @@ export class CentralDatosService {
   }
 
   getUsuarios(){
-    return this.http.get<UsuarioSistema[]>(`${this.urlBase}usuario_sistema/As_R`)
+    return this.http.get<UsuarioSistema[]>(`${this.urlBase}usuario_sistema/As_R`,{headers:this.httpHeaders})
   }
 
   //POSTS CREAR
@@ -88,14 +92,40 @@ export class CentralDatosService {
     )
   }
 
+  postUsrSis(nuevoUsr:any): Observable<any>{
+    return this.http.post<any>(`${this.urlBase}usuario_sistema/_C`,nuevoUsr,{headers:this.httpHeaders})
+    .pipe(
+      tap(()=>{
+        this._refresh$.next();
+      })
+    )
+  }
+
   //POSTS DE EDITAR
   editarCandidato(candidato:any): Observable<any>{
-    return this.http.post<any>(`${this.urlBase}candidato/_U`,candidato,{headers:this.headers})
+    console.log(JSON.stringify(candidato))
+    return this.http.post<any>(`${this.urlBase}candidato/_U`,candidato,{headers:this.httpHeaders})
   }
 
 //POSTS DE ELIMINAR
 eliminarCandidato(elimCandidato:any): Observable<any>{
-  return this.http.post<any>(`${this.urlBase}cliente/_D`,elimCandidato,{headers:this.headers})
+  console.log(elimCandidato)
+  return this.http.post<any>(`${this.urlBase}candidato/_D`,{"idUsuario": elimCandidato})
+}
+
+eliminarCliente(elimCliente:any): Observable<any>{
+  console.log(elimCliente)
+  return this.http.post<any>(`${this.urlBase}cliente/_D`,{"idUsuario": elimCliente})
+}
+
+eliminarUsuario(elimUsuario:any): Observable<any>{
+  console.log(elimUsuario)
+  return this.http.post<any>(`${this.urlBase}usuario_sistema/_D`,{"idUsuario": elimUsuario})
+}
+
+eliminarLab(elimLab:any): Observable<any>{
+  console.log(elimLab)
+  return this.http.post<any>(`${this.urlBase}laboratorio/_D`,{"idUsuario": elimLab})
 }
 
 //POSTS FUNCIONALES

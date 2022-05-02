@@ -34,8 +34,16 @@
             <hr>
             <div class="row">
               <div class="col">
-                <label for="idUsuario" class="form-label">ID Usuario</label>
-                <input type="number" class="form-control" id="idUsuario" formControlName="idUsuario">
+                <label for="idCliente" class="form-label">Cliente asociado</label>
+                <select class="form-control" id="idCliente" formControlName="idCliente">
+                  <option *ngFor="let cliente of clientes" value="{{cliente.idCliente}}">{{cliente.nombre}}</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="idUsuario" class="form-label">Usuario asociado</label>
+                <select class="form-control" id="idUsuario" formControlName="idUsuario">
+                  <option *ngFor="let usuario of usuarios" value="{{usuario.idUsuario}}">{{usuario.nombre}}</option>
+                </select>
               </div>
              <div class="col">
                <label for="idLab" class="form-label">ID Laboratorio</label>
