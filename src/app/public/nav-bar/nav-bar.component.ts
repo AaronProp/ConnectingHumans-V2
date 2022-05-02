@@ -28,6 +28,7 @@ export class NavBarComponent implements OnInit {
    usr_candidato = localStorage.getItem('candidato');
    usr_cliente = localStorage.getItem('cliente');
    usr_lab = localStorage.getItem('lab');
+   sesion = localStorage.getItem('sesion');
 
 
   cerrarSesion(){

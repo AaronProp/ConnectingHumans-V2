@@ -111,3 +111,60 @@ export interface Laboratorio{
         cp: string,
         estatus: number
 }
+
+export interface UsuarioSistema{
+        idUsuario: number,
+        idCliente: number
+        idCandidato: number,
+        idLaboratorio: number,
+        idUsuarioSistema: number,
+        idPermiso: number,
+        nombre_permiso: string,
+        descripcion: string,
+        nombre: string,
+        apellidoPaterno: string,
+        apellidoMaterno: string,
+        telefono: string,
+        telefonoAlternativo: string,
+        correo: string,
+        calle: string,
+        numInterior: number,
+        numExterior: number,
+        calleCruza1: string,
+        calleCruza2: string,
+        estado: string,
+        municipio: string,
+        cp: number,
+        estatus: number
+}
+
+
+// Cats
+
+export interface CatGenero{
+    idCatGenero: number,
+    descripcion: string
+}
+
+export interface CatEstadoCivil{
+    idCatEstadoCivil: number,
+    descripcion: string
+}
+
+export interface CatEscolaridad{
+    idCatEscolaridad: number,
+    descripcion: string
+}
+
+export interface CatPaquete{
+    idPaquete: number,
+    nombre: string,
+    descripcion: string,
+    precio: number
+}
+
+export interface catPermisos{
+    idCatPermisos: number,
+    nombre: string,
+    descripcion: string
+}

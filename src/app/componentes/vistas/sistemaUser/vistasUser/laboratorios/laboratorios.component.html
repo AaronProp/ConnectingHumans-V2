@@ -17,17 +17,154 @@
 
 <!-- Modal Agregar-->
 <div class="modal fade" id="addLabModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo Laboratorio</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         Agregar Registro
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="crearLaboratorio()">
+            <div class="row my-2">
+              <div class="col">
+                <small class="text-danger">En caso de que algunos de los campos no apliquen, poner como valor 'NA' <span class="text-danger">*</span></small>
+              </div>
+            </div>
+            <h4>Informacion de laboratorio</h4>
+            <hr>
+            <div class="row">
+              <div class="col">
+                <label for="idCliente" class="form-label">Cliente asociado</label>
+                <select class="form-control" id="idCliente" formControlName="idCliente">
+                  <option *ngFor="let cliente of clientes" value="{{cliente.idCliente}}">{{cliente.nombre}}</option>
+                </select>
+              </div>
+              <div class="col">
+                <label for="idUsuario" class="form-label">Usuario asociado</label>
+                <select class="form-control" id="idUsuario" formControlName="idUsuario">
+                  <option *ngFor="let usuario of usuarios" value="{{usuario.idUsuario}}">{{usuario.nombre}}</option>
+                </select>
+              </div>
+             <div class="col">
+               <label for="idLab" class="form-label">ID Laboratorio</label>
+               <input type="number" class="form-control" id="idLab" formControlName="idLaboratorio">
+             </div>
+             <div class="col">
+              <label for="nomEmp" class="form-label">Nombre empresa</label>
+              <input type="text" class="form-control" id="nomEmp" formControlName="nombreEmpresa">
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="cedula" class="form-label">Cedula</label>
+                <input type="text" class="form-control" id="cedula" formControlName="cedula">
+              </div>
+              <div class="col">
+                <label for="firma" class="form-label">Firma</label>
+                <input type="file" class="form-control" id="firma" formControlName="firma">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label for="encabezado" class="form-label">Encabezado</label>
+                <input type="text" class="form-control" id="encabezado" formControlName="encabezado">
+              </div>
+              <div class="col">
+                <label for="piePag" class="form-label">Pie de pagina</label>
+                <input type="text" class="form-control" id="piePag" formControlName="pieDePagina">
+              </div>
+            </div>
+            <h4>Informacion de contacto</h4>
+            <hr>
+             <div class="row">
+              <div class="col">
+                <label for="nombre" class="form-label">Nombre(s)</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre">
+              </div>
+               <div class="col">
+                 <label for="apellido1" class="form-label">Apellido paterno</label>
+                 <input type="text" class="form-control" id="apellido1" formControlName="apellidoPaterno">
+               </div>
+               <div class="col">
+                 <label for="apellido2" class="form-label">Apellido materno <span class="text-danger">*</span></label>
+                 <input type="text" class="form-control" id="apllido2" formControlName="apellidoMaterno">
+               </div>
+             </div>
+            </div>
+            <div class="row">
+              <div class="col">
+               <label for="telefono1" class="form-label">Telefono principal <span class="text-danger">*</span></label>
+               <input type="tel" class="form-control" id="telefono1" formControlName="telefono">
+              </div>
+              <div class="col">
+               <label for="telefono2" class="form-label">Telefono secundario <span class="text-danger">*</span></label>
+               <input type="tel" class="form-control" id="telefono2" formControlName="telefonoAlternativo">
+              </div>
+            </div>
+            <div class="row">
+             <div class="col">
+              <label for="correo" class="form-label">Correo electronico <span class="text-danger">*</span></label>
+              <input type="mail" class="form-control" id="correo" formControlName="correo">
+             </div>
+           </div>
+           <h4 class="mt-3">Informacion de Domicilio</h4>
+            <hr>
+           <div class="row">
+             <div class="col">
+               <label for="calle" class="form-label">Calle</label>
+               <input type="text" class="form-control" id="calle" formControlName="calle">
+             </div>
+             <div class="col">
+               <label for="calle1" class="form-label">Cruce 1 <span class="text-danger">*</span></label>
+               <input type="text" class="form-control" id="calle1" formControlName="calleCruza1">
+             </div>
+             <div class="col">
+               <label for="calle2" class="form-label">Cruce 2 <span class="text-danger">*</span></label>
+               <input type="text" class="form-control" id="calle2" formControlName="calleCruza2">
+             </div>
+           </div>
+           <div class="row">
+             <div class="col">
+               <label for="numInt" class="form-label">Num. Int. <span class="text-danger">*</span></label>
+               <input type="number" class="form-control" id="numInt" formControlName="numInterior">
+             </div>
+             <div class="col">
+               <label for="numExt" class="form-label">Num. Ext. <span class="text-danger">*</span></label>
+               <input type="text" class="form-control" id="numExt" formControlName="numExterior">
+             </div>
+             <div class="col">
+               <label for="cp" class="form-label">Codigo postal</label>
+               <input type="number" class="form-control" id="cp" formControlName="cp">
+             </div>
+           </div>
+           <div class="row">
+             <div class="col">
+               <label for="estado" class="form-label">Estado</label>
+               <input type="text" class="form-control" id="estado" formControlName="estado">
+             </div>
+             <div class="col">
+               <label for="muni" class="form-label">Municipio</label>
+               <input type="text" class="form-control" id="muni" formControlName="municipio">
+             </div>
+           </div>
+           <div class="row">
+             <div class="col">
+               <span>Valid</span>
+               <pre>{{miFormulario.valid}}</pre>
+               <span>Pristine</span>
+               <pre>{{miFormulario.pristine}}</pre>
+               <span>Value</span>
+               <pre>{{miFormulario.value | json}}</pre>
+               <span>Touched</span>
+               <pre>{{miFormulario.touched}}</pre>
+             </div>
+           </div>
+  
+           <div class="modal-footer mt-2">
+            <span class="form-text text-danger" *ngIf="miFormulario.invalid">Llena todos los campos requeridos</span>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+          </form>
         </div>
       </div>
     </div>

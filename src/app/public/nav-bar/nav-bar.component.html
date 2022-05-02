@@ -9,7 +9,7 @@
       <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
       <div class="collapse navbar-collapse" id="navbarText">
         <div class="navbar-nav me-auto mb-2 mb-lg-0">
-          <div class="text-center">Tipo de acceso: {{permiso}}</div>
+          <strong class="text-center">Nivel de cuenta: {{permiso}}</strong>
         </div>
       </div>
     </div>
@@ -69,9 +69,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <b>Usuario:</b><span>Usuario</span><br>
-        <b>Tipo de Acceso:</b><span>Tipo acceso</span><br>
-        <b>Descripcion:</b><span>Descripcion</span>
+        <div class="row">
+          <div class="col form-label">Usuario:</div>
+          <div class="col form-label text-center">{{user_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col form-label">Tipo de acceso:</div>
+          <div class="col form-label text-center">{{permiso}}</div>
+        </div>
+        <div class="row">
+          <div class="col form-label">ID de sesion:</div>
+          <div class="col form-label text-center">{{sesion}}</div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

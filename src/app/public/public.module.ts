@@ -6,6 +6,7 @@ import { InfoCardComponent } from './info-card/info-card.component';
 import { FiltrosTablaComponent } from './filtros-tabla/filtros-tabla.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GraficaComponent } from './grafica/grafica.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -20,7 +21,8 @@ import { GraficaComponent } from './grafica/grafica.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   exports:[
     NavBarComponent,

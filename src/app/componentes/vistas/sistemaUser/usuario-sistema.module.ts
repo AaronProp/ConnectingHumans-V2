@@ -11,6 +11,7 @@ import { DashboardComponent } from './vistasUser/dashboard/dashboard.component';
 import { UsuariosComponent } from './vistasUser/usuarios/usuarios.component';
 import { LaboratoriosComponent } from './vistasUser/laboratorios/laboratorios.component';
 import { GraficaComponent } from 'src/app/public/grafica/grafica.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -33,7 +34,8 @@ import { GraficaComponent } from 'src/app/public/grafica/grafica.component';
   imports: [
     CommonModule,
     UserRoutesModule,
-    PublicModule
+    PublicModule,
+    ReactiveFormsModule
   ],
   exports:[]
 })
