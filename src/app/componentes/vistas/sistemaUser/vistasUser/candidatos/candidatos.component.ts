@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
 import { CatGenero, CatEstadoCivil, CatEscolaridad, Cliente } from 'src/app/interfaces/global.interface'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidatos',
@@ -45,9 +46,13 @@ export class CandidatosComponent implements OnInit {
   catEscolaridad:CatEscolaridad[] = [];
   clientes:Cliente[]=[]
  
-  constructor(private servicio:CentralDatosService, private fb:FormBuilder) {}
+  constructor(private servicio:CentralDatosService, private fb:FormBuilder, private router:Router) {}
 
   ngOnInit(): void {
+
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/')
+    }
 
     this.servicio.getClientes()
     .subscribe( res => {

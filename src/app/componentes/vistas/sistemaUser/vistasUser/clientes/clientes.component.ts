@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
 import { CatPaquete } from 'src/app/interfaces/global.interface'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -15,7 +16,7 @@ export class ClientesComponent implements OnInit {
   verAddCliente = true;
   verAddUsuario = true;
   verAddLab = true;
-  constructor( private servicio:CentralDatosService, private fb:FormBuilder) {
+  constructor( private servicio:CentralDatosService, private fb:FormBuilder, private router:Router) {
     if(this.urlAct == "http://localhost:4200/usuario/clientes"){
       this.verAddCliente = false
     }
@@ -49,6 +50,10 @@ export class ClientesComponent implements OnInit {
 catPaquetes: CatPaquete[] = [];
 
   ngOnInit(): void {
+
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/')
+    }
 
     this.servicio.getCatPaquetes()
           .subscribe(resp => {

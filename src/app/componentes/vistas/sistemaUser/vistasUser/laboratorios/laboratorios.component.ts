@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
 import { Cliente, UsuarioSistema } from 'src/app/interfaces/global.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-laboratorios',
@@ -39,10 +40,14 @@ export class LaboratoriosComponent implements OnInit {
 
 clientes:Cliente[]=[]
 usuarios:UsuarioSistema[]=[]
-  constructor(private servicio:CentralDatosService, private fb:FormBuilder) {   
+  constructor(private servicio:CentralDatosService, private fb:FormBuilder, private router:Router) {   
   }
 
   ngOnInit(): void {
+
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/')
+    }
     
     this.servicio.getClientes()
     .subscribe( res => {

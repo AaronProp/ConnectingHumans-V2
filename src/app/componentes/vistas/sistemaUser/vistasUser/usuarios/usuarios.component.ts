@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CentralDatosService } from 'src/app/central-datos.service';
 import { catPermisos } from 'src/app/interfaces/global.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',
@@ -36,10 +37,14 @@ export class UsuariosComponent implements OnInit {
 //Se recuperan los Cats para usarlos en los formularios
 catPermisos: catPermisos[] = [];
 
-  constructor(private servicio:CentralDatosService, private fb:FormBuilder) {
+  constructor(private servicio:CentralDatosService, private fb:FormBuilder, private router:Router) {
   }
 
   ngOnInit(): void {
+
+    if(!localStorage.getItem('token')){
+      this.router.navigateByUrl('/')
+    }
 
     this.servicio.getCatPermisos()
     .subscribe( res => {
