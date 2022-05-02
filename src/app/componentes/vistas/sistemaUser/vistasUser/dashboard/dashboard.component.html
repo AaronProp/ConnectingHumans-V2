@@ -4,12 +4,12 @@
     </div>
     <div class="row" >
         <div class="col col-5">
-                <app-info-card></app-info-card>
-                <app-info-card></app-info-card>
-                <app-info-card></app-info-card>
+            <div *ngFor="let card of info_cards">
+                <app-info-card titulo={{card.titulo}} subtitulo={{card.subtitulo}} cuerpo={{card.cuerpo}}></app-info-card>
+            </div>
         </div>
         <div class="col col-7">
-            <p>Grafica informativa</p>
+            <app-grafica></app-grafica>
         </div>
     </div>
 </div>

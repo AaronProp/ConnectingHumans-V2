@@ -5,6 +5,7 @@ import { TablaInfoComponent } from './tabla-info/tabla-info.component';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { FiltrosTablaComponent } from './filtros-tabla/filtros-tabla.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GraficaComponent } from './grafica/grafica.component';
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavBarComponent,
     TablaInfoComponent,
     InfoCardComponent,
-    FiltrosTablaComponent
+    FiltrosTablaComponent,
+    GraficaComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavBarComponent,
     TablaInfoComponent,
     InfoCardComponent,
-    FiltrosTablaComponent
+    FiltrosTablaComponent,
+    GraficaComponent
   ]
 })
 export class PublicModule { }

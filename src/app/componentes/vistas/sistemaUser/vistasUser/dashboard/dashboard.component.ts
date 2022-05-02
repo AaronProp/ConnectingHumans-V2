@@ -7,6 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  info_cards:any[] = [
+    {
+      titulo: 'Titulo 1',
+      subtitulo: 'Subtitulo 1',
+      cuerpo: 'Cuerpo 1'
+    },
+    {
+      titulo: 'Titulo 2',
+      subtitulo: 'Subtitulo 2',
+      cuerpo: 'Cuerpo 2'
+    },
+    {
+      titulo: 'Titulo 3',
+      subtitulo: 'Subtitulo 3',
+      cuerpo: 'Cuerpo 3'
+    },
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
