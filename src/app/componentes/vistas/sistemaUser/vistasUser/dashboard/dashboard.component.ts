@@ -10,19 +10,19 @@ export class DashboardComponent implements OnInit {
 
   info_cards:any[] = [
     {
-      titulo: 'Titulo 1',
-      subtitulo: 'Subtitulo 1',
-      cuerpo: 'Cuerpo 1'
+      titulo: 'Clientes Totales',
+      subtitulo: '12',
+      cuerpo: 'Cantidad de Clientes registrados en la plataforma'
     },
     {
-      titulo: 'Titulo 2',
-      subtitulo: 'Subtitulo 2',
-      cuerpo: 'Cuerpo 2'
+      titulo: 'Candidatos Totales',
+      subtitulo: '5',
+      cuerpo: 'Candidatos totales que estan relacionados con su Cliente'
     },
     {
-      titulo: 'Titulo 3',
-      subtitulo: 'Subtitulo 3',
-      cuerpo: 'Cuerpo 3'
+      titulo: 'Laboratorios Totales',
+      subtitulo: '4',
+      cuerpo: 'Cantidad de Laboratorios que estan registrados y disponibles pra las investigaciones'
     },
   ]
 
