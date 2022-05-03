@@ -8,15 +8,12 @@
       </button>
       <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="">
       <div class="collapse navbar-collapse" id="navbarText">
-        <div class="navbar-nav me-auto mb-2 mb-lg-0">
-          <strong class="text-center">Nivel de cuenta: {{permiso}}</strong>
-        </div>
       </div>
     </div>
   </nav>
   
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
-    <div class="row mt-2 ms-0 p-2 bg-conhu rounded-end">
+    <div class="row mt-2 ms-0 p-2 bg-light rounded-end">
         <div class="col-10 text-center">
           <img src="assets/imagenes/logo.png" style="height: 7vh;" class="mx-3" alt="" (click)="irInicio()">
         </div>
@@ -45,7 +42,7 @@
           </div>
         </div>
     </div>
-    <div class="row ms-0 mb-2 pt-2 pb-2 mt-auto bg-conhu rounded-end">
+    <div class="row ms-0 mb-2 pt-2 pb-2 mt-auto bg-light rounded-end">
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-user me-3"></i><strong> {{user_name}} </strong>
@@ -64,7 +61,7 @@
 <div class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header bg-info">
+      <div class="modal-header bg-light">
         <h5 class="modal-title" id="exampleModalLabel">Detalles de usuario</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>

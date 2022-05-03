@@ -18,8 +18,10 @@ export class CentralDatosService {
   })
 
   constructor(private http: HttpClient) { }
-  urlBase: string = 'http://localhost:8080/';
-  urlBaseWeb:string = 'http://localhost:4200/'
+  urlBase: string = 'http://54.158.20.205/';
+  //urlBase: string = 'http://localhost:8080/';
+  urlBaseWeb:string = 'http://angular-awsapp.s3-website-us-east-1.amazonaws.com/'
+  //urlBaseWeb:string = 'http://localhost:4200/'
   sesionActual!:Sesion;
 
 
